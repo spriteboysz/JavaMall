@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/grade?useUnicode=true&characterEncoding=UTF8&serverTimeZone=UTC
+    username: root
+    password: www.huawei.com
+
+mybatis:
+  type-aliases-package: com.deean.springbootssm.bean
+  mapper-locations: mappers/*Mapper.xml
