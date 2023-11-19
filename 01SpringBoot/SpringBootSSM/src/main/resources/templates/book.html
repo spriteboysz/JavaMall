@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>图书信息(Thymeleaf)</title>
+</head>
+<body>
+<!--<div th:include="fragments::header"></div>-->
+<div th:replace="fragments::header"></div>
+<table style="width: 600px" border="1" cellspacing="0">
+    <caption>图书信息列表</caption>
+    <thead>
+    <tr>
+        <th>图书编号</th>
+        <th>图书名称</th>
+        <th>图书作者</th>
+        <th>图书价格</th>
+        <th>图书描述</th>
+        <th>图书库存</th>
+        <th>购买建议</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book:${books}">
+        <td th:text="${book.bookNum}"></td>
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.bookAuthor}"></td>
+        <td th:text="${book.bookPrice}"></td>
+        <td th:text="${book.bookDesc}"></td>
+        <td th:text="${book.bookStock}"></td>
+        <td th:if="${book.bookPrice}>100" style="color:red">贵</td>
+        <td th:if="${book.bookPrice}<=100" style="color:green">推荐</td>
+    </tr>
+    </tbody>
+</table>
+<!--<div th:include="fragments::footer"></div>-->
+<div th:replace="fragments::footer"></div>
+</body>
+</html>

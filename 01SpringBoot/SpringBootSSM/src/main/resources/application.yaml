@@ -8,7 +8,9 @@ spring:
 
 mybatis:
   type-aliases-package: com.deean.springbootssm.bean
-  mapper-locations: mappers/*Mapper.xml
+  mapper-locations: classpath:mappers/*Mapper.xml
 
 server:
   port: 8080
+  servlet:
+    context-path: /springbootssm

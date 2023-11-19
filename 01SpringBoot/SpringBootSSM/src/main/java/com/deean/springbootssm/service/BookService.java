@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface BookService {
     List<Book> listBook();
+    Book addBook(Book book);
 }
