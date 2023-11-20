@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = ApiApplication.class)
 class UserDAOTest {
@@ -20,6 +22,6 @@ class UserDAOTest {
     void queryUserByName() {
         User user = userDAO.queryUserByName("admin");
         System.out.println(user);
-        assert (user.getUserPassword().equals("123456"));
+        assertEquals(user.getUserPassword(), "123456");
     }
 }
