@@ -16,7 +16,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-//@Schema(name = "User", description = "用户实体类")
 public class User {
     private int userId;
     private String userName;

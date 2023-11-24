@@ -2,7 +2,7 @@ package dnmall.dao;
 
 import com.deean.ApiApplication;
 import com.deean.dnmall.bean.User;
-import com.deean.dnmall.dao.UserDAO;
+import com.deean.dnmall.mapper.UserDAO;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,7 +1,7 @@
 package com.deean.service.impl;
 
 import com.deean.dnmall.bean.User;
-import com.deean.dnmall.dao.UserDAO;
+import com.deean.dnmall.mapper.UserDAO;
 import com.deean.dnmall.vo.ResultVO;
 import com.deean.service.UserService;
 import jakarta.annotation.Resource;

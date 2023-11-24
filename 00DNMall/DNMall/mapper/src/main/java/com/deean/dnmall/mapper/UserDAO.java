@@ -1,4 +1,4 @@
-package com.deean.dnmall.dao;
+package com.deean.dnmall.mapper;
 
 import com.deean.dnmall.bean.User;
 

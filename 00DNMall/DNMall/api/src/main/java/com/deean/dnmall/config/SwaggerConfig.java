@@ -1,6 +1,9 @@
 package com.deean.dnmall.config;
 
-import org.springdoc.core.models.GroupedOpenApi;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,18 +19,13 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("public")
-                .pathsToMatch("/public/**")
-                .build();
-    }
-
-    @Bean
-    public GroupedOpenApi privateApi() {
-        return GroupedOpenApi.builder()
-                .group("private")
-                .pathsToMatch("/private/**")
-                .build();
+    public OpenAPI springShopOpenAPI() {
+        return new OpenAPI().info(new Info().title("DN-Mall接口说明")
+                        .description("DN-Mall API文档")
+                        .version("v1")
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
+                .externalDocs(new ExternalDocumentation()
+                        .description("外部文档")
+                        .url("https://springshop.wiki.github.org/docs"));
     }
 }

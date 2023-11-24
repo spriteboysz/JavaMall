@@ -1,5 +1,6 @@
 package com.deean.dnmall.vo;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Tag(name="ResultVO")
 public class ResultVO {
     private int code;
     private String msg;
