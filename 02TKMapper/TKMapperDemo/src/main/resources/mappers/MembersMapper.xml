@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.tkmapperdemo.mapper.MembersMapper">
+  <resultMap id="BaseResultMap" type="com.deean.tkmapperdemo.bean.Members">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="member_nick" jdbcType="VARCHAR" property="memberNick" />
+    <result column="member_gender" jdbcType="CHAR" property="memberGender" />
+    <result column="member_age" jdbcType="INTEGER" property="memberAge" />
+    <result column="member_city" jdbcType="VARCHAR" property="memberCity" />
+  </resultMap>
+</mapper>
