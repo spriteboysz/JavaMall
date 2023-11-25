@@ -1,7 +1,7 @@
 package com.deean.dnmall.controller;
 
 import com.deean.dnmall.vo.ResultVO;
-import com.deean.service.UserService;
+import com.deean.dnmall.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
