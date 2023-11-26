@@ -1,7 +1,7 @@
 package com.deean.dnmall.mapper;
 
-import com.deean.dnmall.bean.User ;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.deean.dnmall.bean.User;
 
 /**
 * @author Deean

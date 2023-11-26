@@ -1,7 +1,7 @@
 package com.deean.dnmall.service;
 
-import com.deean.dnmall.bean.User ;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.deean.dnmall.bean.User;
 import com.deean.dnmall.vo.ResultVO;
 
 /**
