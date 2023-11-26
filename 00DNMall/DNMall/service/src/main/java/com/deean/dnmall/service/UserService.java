@@ -12,4 +12,6 @@ import com.deean.dnmall.vo.ResultVO;
 public interface UserService extends IService<User> {
 
     ResultVO checkLogin(String name, String password);
+
+    ResultVO register(String name, String password);
 }

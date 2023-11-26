@@ -3,8 +3,9 @@ package com.deean.dnmall.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.deean.dnmall.bean.User;
 import com.deean.dnmall.mapper.UserMapper;
-import com.deean.dnmall.vo.ResultVO;
 import com.deean.dnmall.service.UserService;
+import com.deean.dnmall.util.MD5Util;
+import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (users.isEmpty()) {
             return new ResultVO(10001, "用户名不存在", null);
         } else {
-            if (users.get(0).getUserPassword().equals(password)) {
+            if (password.equals(MD5Util.md5(users.get(0).getUserPassword()))) {
                 return new ResultVO(10000, "登录成功", users.get(0));
             } else {
                 return new ResultVO(10001, "登录失败", null);
             }
+        }
+    }
+
+    @Override
+    public ResultVO register(String name, String password) {
+        User user = new User();
+        user.setUserName(name);
+        user.setUserPassword(password);
+        int i = userMapper.insert(user);
+        if (i > 0) {
+            return new ResultVO(10000, "注册成功", user);
+        } else {
+            return new ResultVO(10001, "注册失败", null);
         }
     }
 }

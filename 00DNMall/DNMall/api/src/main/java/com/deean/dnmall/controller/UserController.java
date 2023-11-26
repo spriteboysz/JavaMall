@@ -1,7 +1,7 @@
 package com.deean.dnmall.controller;
 
-import com.deean.dnmall.vo.ResultVO;
 import com.deean.dnmall.service.UserService;
+import com.deean.dnmall.vo.ResultVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -28,5 +28,11 @@ public class UserController {
     @Operation(summary = "用户登录")
     public ResultVO login(String name, String password) {
         return userService.checkLogin(name, password);
+    }
+
+    @PostMapping("/register")
+    @Operation(summary = "用户注册")
+    public ResultVO register(String name, String password) {
+        return userService.register(name, password);
     }
 }
