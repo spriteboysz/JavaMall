@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.dnmall.mapper.UserAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.deean.dnmall.bean.UserAddress">
+            <id property="addrId" column="addr_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="addrReceiverName" column="addr_receiver_name" jdbcType="VARCHAR"/>
+            <result property="addrReceiverMobile" column="addr_receiver_mobile" jdbcType="VARCHAR"/>
+            <result property="addrProvince" column="addr_province" jdbcType="VARCHAR"/>
+            <result property="addrCity" column="addr_city" jdbcType="VARCHAR"/>
+            <result property="addrArea" column="addr_area" jdbcType="VARCHAR"/>
+            <result property="addrDetail" column="addr_detail" jdbcType="VARCHAR"/>
+            <result property="addrPostCode" column="addr_post_code" jdbcType="VARCHAR"/>
+            <result property="addrStatus" column="addr_status" jdbcType="INTEGER"/>
+            <result property="addrDefault" column="addr_default" jdbcType="INTEGER"/>
+            <result property="addrCreateTime" column="addr_create_time" jdbcType="TIMESTAMP"/>
+            <result property="addrUpdateTime" column="addr_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        addr_id,user_id,addr_receiver_name,
+        addr_receiver_mobile,addr_province,addr_city,
+        addr_area,addr_detail,addr_post_code,
+        addr_status,addr_default,addr_create_time,
+        addr_update_time
+    </sql>
+</mapper>
