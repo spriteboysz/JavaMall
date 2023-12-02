@@ -8,13 +8,20 @@
 <body>
 <div id="app">
     {{ message }}
+    <button @click="clickHandle">设置</button>
 </div>
 <script>
     const {createApp} = Vue
+
     createApp({
         data() {
             return {
-                message: 'Hello World!'
+                message: 1
+            }
+        },
+        methods:{
+            clickHandle(){
+                this.message = (this.message === 'Hello Vue!') ? 'Hello World' : 'Hello Vue!'
             }
         }
     }).mount('#app')
