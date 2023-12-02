@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bookmall?useUnicode=true&characterEncoding=UTF8&serverTimeZone=UTC
+    username: root
+    password: www.huawei.com
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.deean.mybatisplusdemo02.bean
+  mapper-locations: classpath:mapper/*Mapper.xml

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.mybatisplusdemo02.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="com.deean.mybatisplusdemo02.bean.Book">
+            <id property="bookId" column="book_id" jdbcType="CHAR"/>
+            <result property="bookName" column="book_name" jdbcType="VARCHAR"/>
+            <result property="bookAuthor" column="book_author" jdbcType="VARCHAR"/>
+            <result property="bookCover" column="book_cover" jdbcType="VARCHAR"/>
+            <result property="bookPrice" column="book_price" jdbcType="DOUBLE"/>
+            <result property="bookDesc" column="book_desc" jdbcType="VARCHAR"/>
+            <result property="bookStock" column="book_stock" jdbcType="INTEGER"/>
+            <result property="bookType" column="book_type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        book_id,book_name,book_author,
+        book_cover,book_price,book_desc,
+        book_stock,book_type
+    </sql>
+</mapper>
