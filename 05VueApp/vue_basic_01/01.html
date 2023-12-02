@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <script src="js/vue.global.js"></script>
 </head>
 <body>
 <div id="app">
     {{ message }}
-    <button @click="clickHandle">设置</button>
+    <br/>
+    <button @click="clickHandle">Change</button>
 </div>
 <script>
     const {createApp} = Vue
@@ -16,11 +19,11 @@
     createApp({
         data() {
             return {
-                message: 1
+                message: 'Hello Vue!'
             }
         },
-        methods:{
-            clickHandle(){
+        methods: {
+            clickHandle() {
                 this.message = (this.message === 'Hello Vue!') ? 'Hello World' : 'Hello Vue!'
             }
         }
