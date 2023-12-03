@@ -24,4 +24,10 @@ class UserServiceImplTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void queryTest02() {
+        long count = userService.count();
+        System.out.println(count);
+    }
 }
