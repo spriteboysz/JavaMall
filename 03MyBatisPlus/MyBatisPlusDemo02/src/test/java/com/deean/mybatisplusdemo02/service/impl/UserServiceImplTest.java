@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -29,5 +30,13 @@ class UserServiceImplTest {
     public void queryTest02() {
         long count = userService.count();
         System.out.println(count);
+    }
+
+    @Test
+    public void queryTest03(){
+        List<Map<String, Object>> maps = userService.listMaps();
+        for (Map<String, Object> map : maps) {
+            System.out.println(map);
+        }
     }
 }
