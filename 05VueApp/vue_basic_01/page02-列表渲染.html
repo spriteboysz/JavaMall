@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <!-- CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- jQuery and JavaScript Bundle with Popper -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"
+            integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+</head>
+<body>
+<div id='app'>
+    <table class="table table-bordered">
+        <thead>学生信息表</thead>
+        <tr>
+            <th>学号</th>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        <tr v-for="(student, index) in students" :id="index">
+            <td>{{ student.stuNum }}</td>
+            <td><img :src="student.stuImage" height="40" alt=""/></td>
+            <td>{{ student.stuName }}</td>
+            <td>
+                <img alt="" v-if="student.stuGender==='M'" height="40" src="image/male.jpg"/>
+                <img alt="" v-else height="40" src="image/female.jpg"/>
+            </td>
+            <td>
+                {{student.stuAge}}
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm" @click="doModify(student.stuNum)">修改</button>
+                <button class="btn btn-danger btn-sm" @click="doDelete" :data-num="student.stuNum">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {
+                students: [
+                    {
+                        stuNum: 20231001,
+                        stuImage: "image/01.jpg",
+                        stuName: "Tom",
+                        stuGender: "M",
+                        stuAge: 20
+                    },
+                    {
+                        stuNum: 20231002,
+                        stuImage: "image/02.jpg",
+                        stuName: "Lucy",
+                        stuGender: "F",
+                        stuAge: 19
+                    },
+                    {
+                        stuNum: 20231003,
+                        stuImage: "image/03.jpg",
+                        stuName: "Jerry",
+                        stuGender: "M",
+                        stuAge: 21
+                    },
+                    {
+                        stuNum: 20231004,
+                        stuImage: "image/04.jpg",
+                        stuName: "LiLei",
+                        stuGender: "M",
+                        stuAge: 20
+                    }
+                ]
+            }
+        },
+        methods: {
+            doModify(num) {
+                console.log("修改" + num);
+            },
+            doDelete(event) {
+                console.log(`删除${event.srcElement.dataset}`)
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
