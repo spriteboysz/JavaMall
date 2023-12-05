@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放</title>
+    <!-- CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery and JavaScript Bundle with Popper -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+    <script type="text/javascript" src="js/music.js"></script>
+</head>
+<body>
+<div id='container'>
+    <h3>音乐播放器</h3>
+    <label>
+        <input type="text" placeholder="歌曲名/歌手" v-model="keyword"/>
+    </label>
+    <button type="button" @click="doSearch">搜索</button>
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th>序号</th>
+            <th>音乐ID</th>
+            <th>音乐名称</th>
+            <th>音乐人</th>
+            <th>专辑</th>
+            <th>时长</th>
+            <th>操作</th>
+        </tr>
+        <tr v-for="(song, index) in songs" id="index">
+            <td>{{index + 1}}</td>
+            <td>{{song.id}}</td>
+            <td>{{song.name}}</td>
+            <td>
+                <span v-for="artist in song.artists">&nbsp{{artist.name}}</span>
+            </td>
+            <td>{{song.album.name}}</td>
+            <td>{{Math.floor(song.duration / 1000)}}</td>
+            <td>
+                <button type="button" class="btn btn-success btn-sm">播放</button>
+                <button type="button" v-if="song.mvid !== 0" class="btn btn-primary btn-sm">MV</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<audio controls style="width: 100%;"></audio>
+<script type="text/javascript">
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {
+                keyword: "张韶涵",
+                songs: []
+            }
+        },
+        methods: {
+            doSearch() {
+                console.log("abc")
+                console.log(this.keyword)
+                this.songs = data.result.songs
+                console.log(this.songs)
+            }
+        }
+    }).mount('#container')
+</script>
+</body>
+</html>
