@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+</head>
+<body>
+<div id="container">
+    <h3>文本密码框</h3>
+    <label>
+        <input type="text" v-model="text1"/><br/>
+        您输入的是：{{text1}}<br/>
+        <input type="password" v-model="text2"/><br/>
+        您输入的是：{{text2}}
+    </label>
+    <h3>单选框</h3>
+    <label>
+        请选择喜欢的球类运动（单选）：
+        <input type="radio" v-model="radio" value="A">A 篮球
+        <input type="radio" v-model="radio" value="B">B 足球
+        <input type="radio" v-model="radio" value="C">C 网球
+        <input type="radio" v-model="radio" value="D">D 棒球<br/>
+        您输入的是：{{radio}}
+    </label>
+    <h3>复选框</h3>
+    <label>
+        请选择喜欢的球类运动（多选）：
+        <input type="checkbox" v-model="checkbox" value="A">A 篮球
+        <input type="checkbox" v-model="checkbox" value="B">B 足球
+        <input type="checkbox" v-model="checkbox" value="C">C 网球
+        <input type="checkbox" v-model="checkbox" value="D">D 棒球<br/>
+        您输入的是：{{checkbox}}
+    </label>
+    <h3>下拉菜单</h3>
+    <label>
+        请选择喜欢的球类运动（单选）：
+        <select v-model="select1">
+            <option value="篮球">篮球</option>
+            <option value="足球">足球</option>
+            <option value="网球">网球</option>
+            <option value="棒球">棒球</option>
+        </select><br/>
+        您输入的是：{{select1}}
+    </label>
+    <h3>下拉菜单（多选）</h3>
+    <label>
+        请选择喜欢的球类运动（多选）：
+        <select v-model="select2" multiple>
+            <option value="篮球">篮球</option>
+            <option value="足球">足球</option>
+            <option value="网球">网球</option>
+            <option value="棒球">棒球</option>
+        </select><br/>
+        您输入的是：{{select2}}
+    </label>
+</div>
+
+<script type="text/javascript">
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {
+                text1: "str1",
+                text2: "password",
+                radio: "B",
+                checkbox: ['B', 'D'],
+                select1: "篮球",
+                select2: ["篮球"]
+            }
+        },
+        methods: {}
+    }).mount('#container')
+</script>
+
+</body>
+</html>
