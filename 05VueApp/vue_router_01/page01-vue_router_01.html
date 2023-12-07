@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.global.js"></script>
+    <script src="js/vue-router.global.js"></script>
+</head>
+<body>
+<div id="container">
+    <h3>Hello App!</h3>
+    <div style="background: aqua;height: 80px;width: 100%">
+        <p>
+            <!--使用 router-link 组件进行导航 -->
+            <router-link to="/">Go to Home</router-link>
+            <router-link to="/about">Go to About</router-link>
+        </p>
+    </div>
+    <div>
+        <!-- 路由出口 -->
+        <router-view></router-view>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 1. 定义路由组件
+    const Home = {template: '<div>Home</div>'}
+    const About = {template: '<div>About</div>'}
+
+    // 2. 定义一些路由
+    const routes = [
+        {path: '/', component: Home},
+        {path: '/about', component: About},
+    ]
+
+    // 3. 创建路由实例并传递 `routes` 配置
+    const router = VueRouter.createRouter({
+        // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+        history: VueRouter.createWebHashHistory(),
+        routes: routes
+    })
+
+    // 5. 创建并挂载根实例
+    const app = Vue.createApp({})
+    app.use(router)
+    app.mount('#container')
+</script>
+</body>
+</html>

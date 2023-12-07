@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios异步请求</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="container">
+    <h3>axios使用</h3>
+    <button type="button" @click="test1">测试</button>
+</div>
+<script type="text/javascript">
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {}
+        },
+        methods: {
+            test1() {
+                axios({
+                    method: 'get',
+                    url: 'https://leetcode.cn/problemset/?page=65',
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Credentials':'true'
+                    },
+                    data: {
+                    },
+                    responseType: 'json'
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    });
+            }
+        }
+    }).mount('#container')
+</script>
+</body>
+</html>
