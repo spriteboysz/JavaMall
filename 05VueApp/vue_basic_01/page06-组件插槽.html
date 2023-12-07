@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>组件插槽</title>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+    <script type="text/javascript" src="js/my-components.js"></script>
 </head>
 <body>
+<div id="container">
 
+
+
+</div>
+<script type="text/javascript">
+    const {createApp} = Vue
+    createApp({
+        data() {
+            return {
+            }
+        },
+        methods: {}
+    }).mount('#container')
+</script>
 </body>
 </html>
