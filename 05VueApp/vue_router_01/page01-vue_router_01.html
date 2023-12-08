@@ -5,8 +5,8 @@
     <title>Title</title>
     <style type="text/css">
         body {
-            padding: 0px;
-            margin: 0px;
+            padding: 0;
+            margin: 0;
         }
 
         ul {
@@ -79,7 +79,7 @@
 
     // 2. 定义一些路由
     const routes = [
-        {path: '/', component: Home},
+        {path: '/', component: Home, name: "r1"},
         {path: '/j', component: Java},
         {path: '/h', component: HTML},
         {path: '/p', component: Python},
