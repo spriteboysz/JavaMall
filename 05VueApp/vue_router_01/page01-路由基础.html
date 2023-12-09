@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>路由基础</title>
     <style>
         body {
             padding: 0;
@@ -40,6 +40,7 @@
     <div style="width: 100%; height: 70px; background: #00BFFF;">
         <table>
             <tr>
+                <td><img src="image/mm.png" alt="" hidden="hidden"/></td>
                 <td>
                     <!--使用 router-link 组件进行导航 -->
                     <ul>
@@ -57,6 +58,9 @@
                         </li>
                         <li>
                             <router-link to="/about">Go to About</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/abc">UnExist</router-link>
                         </li>
                     </ul>
                 </td>
@@ -76,6 +80,7 @@
     const HTML = {template: '<div>HTML</div>'}
     const Python = {template: '<div>Python</div>'}
     const About = {template: '<div>About</div>'}
+    const NotFound = {template: '<div>链接错误，请重试!</div>'}
 
     // 2. 定义一些路由
     const routes = [
@@ -84,6 +89,7 @@
         {path: '/h', component: HTML},
         {path: '/p', component: Python},
         {path: '/about', component: About},
+        {path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound}
     ]
 
     // 3. 创建路由实例并传递 `routes` 配置

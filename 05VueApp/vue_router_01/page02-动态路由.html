@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态路由</title>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+    <script type="text/javascript" src="js/vue-router.global.js"></script>
+</head>
+<body>
+<div id="container">
+    <h3>{{str}}</h3>
+    <router-link to="/users/101">用户ID</router-link>
+    <div style="width: 350px;height: 350px;background: #00BFFF">
+        <router-view></router-view>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const User = {
+        template: '<div>User {{ $route.params.id }}</div>',
+    }
+
+    // 这些都会传递给 `createRouter`
+    const routes = [
+        // 动态字段以冒号开始
+        {path: '/users/:id', component: User},
+    ]
+    // 3. 创建路由实例并传递 `routes` 配置
+    const router = VueRouter.createRouter({
+        // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+        history: VueRouter.createWebHashHistory(),
+        routes: routes
+    })
+    const app = Vue.createApp({
+        data() {
+            return {
+                str: "Hello Vue3!"
+            }
+        }
+    })
+    app.use(router)
+    app.mount('#container')
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嵌套路由</title>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+    <script type="text/javascript" src="js/vue-router.global.js"></script>
+</head>
+<body>
+<div id="container">
+    <h3>{{ title }}</h3>
+    <table style="padding: 0;margin: 0;">
+        <tr>
+            <td>
+                <router-link to="/user/101/profile">用户Profile</router-link>
+            </td>
+            <td>
+                <router-link to="/user/101/posts">用户Posts</router-link>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <router-view></router-view>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    const User = {
+        template: `
+    <div class="user">
+      <div>User {{ $route.params.id }}</div>
+      <router-view></router-view>
+    </div>
+  `,
+    }
+    const UserProfile = {
+        template: '<div>Profile</div>'
+    }
+    const UserPosts = {
+        template: '<div>Posts</div>'
+    }
+
+    const routes = [
+        {
+            path: '/user/:id',
+            component: User,
+            children: [
+                {
+                    // 当 /user/:id/profile 匹配成功
+                    path: 'profile',
+                    component: UserProfile,
+                },
+                {
+                    // 当 /user/:id/posts 匹配成功
+                    path: 'posts',
+                    component: UserPosts,
+                },
+            ],
+        },
+    ]
+    // 3. 创建路由实例并传递 `routes` 配置
+    const router = VueRouter.createRouter({
+        // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+        history: VueRouter.createWebHashHistory(),
+        routes: routes
+    })
+    const app = Vue.createApp({
+        data() {
+            return {
+                title: "Hello Vue3! 嵌套路由"
+            }
+        }
+    })
+    app.use(router)
+    app.mount('#container')
+</script>
+</body>
+</html>
