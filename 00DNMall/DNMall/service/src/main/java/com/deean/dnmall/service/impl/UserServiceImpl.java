@@ -9,6 +9,7 @@ import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (users.isEmpty()) {
             return new ResultVO(10001, "用户名不存在", null);
         } else {
-            if (password.equals(MD5Util.md5(users.get(0).getUserPassword()))) {
-                return new ResultVO(10000, "登录成功", users.get(0));
+            if (users.getFirst().getUserPassword().equals(MD5Util.md5(password))) {
+                return new ResultVO(10000, "登录成功", users.getFirst());
             } else {
                 return new ResultVO(10001, "登录失败", null);
             }
@@ -45,7 +46,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public ResultVO register(String name, String password) {
         User user = new User();
         user.setUserName(name);
-        user.setUserPassword(password);
+        user.setUserPassword(MD5Util.md5(password));
+        user.setUserImage("default");
+        user.setUserCreateTime(new Date());
+        user.setUserUpdateTime(new Date());
         int i = userMapper.insert(user);
         if (i > 0) {
             return new ResultVO(10000, "注册成功", user);
