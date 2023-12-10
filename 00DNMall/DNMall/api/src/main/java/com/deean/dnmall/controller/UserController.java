@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
  * Description:
  */
 
+// API: http://localhost:8080/swagger-ui/index.html#/UserManager/
 @RestController
 @RequestMapping("/user")
-@Tag(name = "用户管理类", description = "用户管理类测试")
+@Tag(name = "UserManager", description = "用户管理类测试")
 public class UserController {
 
     @Resource
