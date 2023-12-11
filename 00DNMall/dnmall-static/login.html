@@ -9,7 +9,7 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="content-type" content="no-siteapp"/>
 
     <link rel="stylesheet" href="static/css/amazeui.css"/>
     <link href="static/css/dlstyle.css" rel="stylesheet" type="text/css">
@@ -55,7 +55,7 @@
                 <input type="button" @click="doSubmit" value="登 录" class="am-btn am-btn-primary am-btn-sm">
             </div>
             <div class="am-cf">
-                <input type="button" onclick="javascript:window.location.href='register.html'" value="注 册"
+                <input type="button" onclick="window.location.href='register.html'" value="注 册"
                        class="am-btn am-btn-default am-btn-sm">
             </div>
             <div class="partner">
@@ -106,11 +106,14 @@
                             password: this.password
                         }
                     }).then((res) => {
-                        console.log(this.username)
-                        console.log(res.data)
+                        if (res.data.code !== 10000) {
+                            this.tips = "用户名或密码不正确";
+                        } else {
+                            window.location.href = "index.html";
+                        }
                     });
                 } else {
-                    this.tips = "用户名或密码不正确"
+                    this.tips = "请输入正确的用户名和密码"
                 }
             },
             checkInfo() {
