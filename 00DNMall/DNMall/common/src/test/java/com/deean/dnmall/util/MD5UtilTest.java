@@ -6,6 +6,6 @@ class MD5UtilTest {
 
     @Test
     void md5() {
-        System.out.println(MD5Util.md5("123"));
+        System.out.println(MD5Util.md5("123456"));
     }
 }

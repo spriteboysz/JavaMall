@@ -27,9 +27,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private UserMapper userMapper;
 
     @Override
-    public ResultVO checkLogin(String name, String password) {
+    public ResultVO checkLogin(String username, String password) {
         Map<String, Object> map = new HashMap<>();
-        map.put("user_name", name);
+        map.put("user_name", username);
         List<User> users = userMapper.selectByMap(map);
         if (users.isEmpty()) {
             return new ResultVO(10001, "用户名不存在", null);
@@ -43,9 +43,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public ResultVO register(String name, String password) {
+    public ResultVO register(String username, String password) {
         User user = new User();
-        user.setUserName(name);
+        user.setUserName(username);
         user.setUserPassword(MD5Util.md5(password));
         user.setUserImage("default");
         user.setUserCreateTime(new Date());
