@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 
 	<head lang="en">
 		<meta charset="UTF-8">
@@ -19,7 +19,7 @@
 
 		<div class="login-boxtitle" style="height: 100px;">
 			<div class="logoBig">
-				<img src="static/images/logo.png" style="margin-left: 0px ; height: 100px;">
+				<img src="static/images/logo.png" style="margin-left: 0 ; height: 100px;" alt="">
 			</div>
 		</div>
 
@@ -36,11 +36,15 @@
 						<form>
 							<div class="user-name"  style="margin-top: 20px;">
 								<label for="user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
-								<input type="text" v-model="username" placeholder="邮箱/手机/用户名" @keyup="checkInfo">
+								<label>
+									<input type="text" v-model="username" placeholder="邮箱/手机/用户名" @keyup="checkInfo">
+								</label>
 							</div>
 							<div class="user-pass"  style="margin-top: 20px;">
 								<label for="password"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
-								<input type="password" v-model="password" placeholder="请输入密码" @keyup="checkInfo">
+								<label>
+									<input type="password" v-model="password" placeholder="请输入密码" @keyup="checkInfo">
+								</label>
 							</div>
 						</form>
 					</div>
@@ -54,7 +58,7 @@
 						<input type="button" @click="doSubmit" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 					</div>
 					<div class="am-cf">
-						<input type="button" onclick="javascript:window.location.href='register.html'" value="注 册" class="am-btn am-btn-default am-btn-sm">
+						<input type="button" onclick="window.location.href='register.html'" value="注 册" class="am-btn am-btn-default am-btn-sm">
 					</div>
 					<div class="partner">
 						
@@ -70,8 +74,8 @@
 			</div>
 			<div class="footer-bd ">
 				<p>
-					<a href="# ">联系我们</a>
-					<a href="# ">网站地图</a>
+					<a href="#">联系我们</a>
+					<a href="#">网站地图</a>
 				</p>
 			</div>
 		</div>
@@ -83,98 +87,6 @@
 		<script type="text/javascript" src="static/js/axios.min.js" ></script>
 		<script type="text/javascript" src="static/js/base.js" ></script>
 		<script type="text/javascript">
-			var vm = new Vue({
-				el:"#container",
-				data:{
-					username:"",
-					password:"",
-					tips:"",
-					colorStyle:"color:red",
-					isRight:false,
-					returnUrl:null,
-					pid:0,
-					sid:0,
-					num:1
-				},
-				created:function(){
-					//1.当从商品详情页跳转到登录页面的时候，获取并显示提示信息（url）
-					this.tips = getUrlParam("tips");
-					
-					//2.获取到returnUrl 、 pid 、sid
-					this.returnUrl = getUrlParam("returnUrl");
-					this.pid = getUrlParam("pid");
-					this.sid = getUrlParam("sid");
-					this.num = getUrlParam("num");
-				},
-				methods:{
-					doSubmit:function(){
-						if(vm.isRight){
-							var url = baseUrl+"user/login";
-							axios.get(url,{
-								params:{
-									username:vm.username,
-									password:vm.password
-								}
-							}).then((res)=>{
-								//res.data 才表示接口返回的数据
-								var vo = res.data;
-								console.log(vo);
-								
-								if(vo.code == 10000){
-									//如果登录成功，就把token存储到cookie
-									setCookieValue("token",vo.msg);
-									//将用户昵称和用户头像的路径保存在cookie
-									setCookieValue("userId",vo.data.userId);
-									setCookieValue("username",vo.data.username);
-									setCookieValue("userImg",vo.data.userImg)
-									
-									if(this.returnUrl == null){
-										window.location.href = "index.html";
-									}else{
-										this.returnUrl = this.returnUrl+"?m="+Math.random();
-										if(this.pid != null){
-											this.returnUrl = this.returnUrl +"&pid="+this.pid
-										}
-										if(this.sid != null){
-											this.returnUrl = this.returnUrl +"&sid="+this.sid
-										}
-										if(this.num != null){
-											this.returnUrl = this.returnUrl +"&num="+this.num
-										}
-										window.location.href = this.returnUrl;
-									}
-								}else{
-									vm.tips = "登录失败，账号或密码错误！";
-								}
-							});
-							
-						}else{
-							vm.tips = "请正确输入帐号和密码！";
-						}
-					},
-					checkInfo:function(){
-						if(vm.username == ""){
-							vm.tips = "请输入帐号！";
-							vm.isRight = false;
-						}else if(vm.username.length<8 || vm.username.length>20){
-							vm.tips = "账号长度必须为8-20个字符！";
-							vm.isRight = false;
-						}else{
-							//账号合法，校验密码
-							if(vm.password == ""){
-								vm.tips = "请输入密码！";
-								vm.isRight = false;
-							}else if(vm.password.length<6 || vm.password.length>16){
-								vm.tips = "密码长度必须为6-16个字符！";
-								vm.isRight = false;
-							}else{
-								vm.tips ="";
-								vm.isRight = true;
-							}
-						}
-					}
-				}
-			});
 			
 
 		</script>
