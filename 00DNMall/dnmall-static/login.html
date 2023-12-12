@@ -35,13 +35,15 @@
 
             <div class="login-form" style="background: none; margin-top: 15px;">
                 <form>
-                    <div class="user-name" style="margin-top: 20px;" id="user">
+                    <div class="user-name" style="margin-top: 20px;">
                         <label for="user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
-                        <input type="text" v-model="username" placeholder="邮箱/手机/用户名" @keyup="checkInfo">
+                        <input type="text" v-model="username" placeholder="邮箱/手机/用户名" @keyup="checkInfo"
+                               id="user">
                     </div>
-                    <div class="user-pass" style="margin-top: 20px;" id="password">
+                    <div class="user-pass" style="margin-top: 20px;">
                         <label for="password"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
-                        <input type="password" v-model="password" placeholder="请输入密码" @keyup="checkInfo">
+                        <input type="password" v-model="password" placeholder="请输入密码" @keyup="checkInfo"
+                               id="password">
                     </div>
                 </form>
             </div>
