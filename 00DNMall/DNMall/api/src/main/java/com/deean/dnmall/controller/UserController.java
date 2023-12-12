@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author: Deean
@@ -37,11 +34,12 @@ public class UserController {
         return userService.checkLogin(username, password);
     }
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     @Operation(summary = "用户注册")
     @Parameters({@Parameter(name = "username", description = "用户名"),
             @Parameter(name = "password", description = "密码")})
     public ResultVO register(String username, String password) {
-        return userService.register(username, password);
+        System.out.println("===" + username);
+        return userService.userRegister(username, password);
     }
 }

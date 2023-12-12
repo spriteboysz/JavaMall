@@ -9,6 +9,7 @@ import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -44,18 +45,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public ResultVO register(String username, String password) {
-        User user = new User();
-        user.setUserName(username);
-        user.setUserPassword(MD5Util.md5(password));
-        user.setUserImage("default");
-        user.setUserCreateTime(new Date());
-        user.setUserUpdateTime(new Date());
-        int i = userMapper.insert(user);
-        if (i > 0) {
-            return new ResultVO(ResStatus.success, "注册成功", user);
-        } else {
-            return new ResultVO(ResStatus.fail, "注册失败", null);
+    @Transactional
+    public ResultVO userRegister(String username, String password) {
+        synchronized (this) {
+            //1.根据用户查询，这个用户是否已经被注册
+            Map<String, Object> map = new HashMap<>();
+            map.put("user_name", username);
+            List<User> users = userMapper.selectByMap(map);
+
+            //2.如果没有被注册则进行保存操作
+            if (users.isEmpty()) {
+                User user = new User();
+                user.setUserName(username);
+                user.setUserPassword(MD5Util.md5(password));
+                user.setUserImage("image/default.png");
+                user.setUserCreateTime(new Date());
+                user.setUserUpdateTime(new Date());
+                int i = userMapper.insert(user);
+                if (i > 0) {
+                    return new ResultVO(ResStatus.success, "注册成功！", user);
+                } else {
+                    return new ResultVO(ResStatus.fail, "注册失败！", null);
+                }
+            } else {
+                return new ResultVO(ResStatus.fail, "用户名已经被注册！", null);
+            }
         }
     }
 }
