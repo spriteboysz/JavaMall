@@ -102,17 +102,18 @@
                         header: {
                             'Content-Type': 'application/json'
                         },
-                        data: {
+                        params: {
                             username: this.user.username,
                             password: this.user.password
                         }
                     }).then((res) => {
+                        console.log(this.user.username);
                         if (res.data.code === 10000) {
                             this.tips = "注册成功";
                             this.colorStyle = "color:green";
                             setTimeout(function () {
                                 window.location.href = "login.html";
-                            }, 3)
+                            }, 3000)
                         } else {
                             this.tips = "注册失败";
                         }
