@@ -39,7 +39,6 @@ public class UserController {
     @Parameters({@Parameter(name = "username", description = "用户名"),
             @Parameter(name = "password", description = "密码")})
     public ResultVO register(String username, String password) {
-        System.out.println("===" + username);
         return userService.userRegister(username, password);
     }
 }
