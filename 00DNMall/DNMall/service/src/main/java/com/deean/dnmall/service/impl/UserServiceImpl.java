@@ -7,6 +7,9 @@ import com.deean.dnmall.service.UserService;
 import com.deean.dnmall.util.MD5Util;
 import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +40,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return new ResultVO(ResStatus.fail, "用户名不存在", null);
         } else {
             if (users.getFirst().getUserPassword().equals(MD5Util.md5(password))) {
-                return new ResultVO(ResStatus.success, "登录成功", users.getFirst());
+                JwtBuilder builder = Jwts.builder();
+                HashMap<String, Object> claim = new HashMap<>();
+                String token = builder.setSubject(username)
+                        .setIssuedAt(new Date())
+                        .setId(users.getFirst().getUserId() + "")
+                        .setClaims(claim)
+                        .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
+                        .signWith(SignatureAlgorithm.ES256, "deean")
+                        .compact();
+                return new ResultVO(ResStatus.success, token, users.getFirst());
             } else {
                 return new ResultVO(ResStatus.fail, "登录失败", null);
             }
