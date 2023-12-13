@@ -37,7 +37,7 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
         } else {
             try {
                 JwtParser parser = Jwts.parser();
-                parser.setSigningKey("deean");
+                parser.setSigningKey("deean123");
                 //如果token正确（密码正确，有效期内）则正常执行，否则抛出异常
                 Jws<Claims> claimsJws = parser.parseClaimsJws(token);
                 return true;

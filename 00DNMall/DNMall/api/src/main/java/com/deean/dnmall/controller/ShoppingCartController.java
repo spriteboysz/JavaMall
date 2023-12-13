@@ -24,7 +24,7 @@ public class ShoppingCartController {
 
     @GetMapping("/list")
     @Operation(summary = "购物车列表")
-    public ResultVO listCart() {
+    public ResultVO listCart(String token) {
         System.out.println("---购物车列表接口---");
         return new ResultVO(ResStatus.success, "success", null);
     }

@@ -42,12 +42,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             if (users.getFirst().getUserPassword().equals(MD5Util.md5(password))) {
                 JwtBuilder builder = Jwts.builder();
                 HashMap<String, Object> claim = new HashMap<>();
+                claim.put("key1","value1");
+                claim.put("key2","value2");
                 String token = builder.setSubject(username)
                         .setIssuedAt(new Date())
                         .setId(users.getFirst().getUserId() + "")
                         .setClaims(claim)
                         .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
-                        .signWith(SignatureAlgorithm.ES256, "deean")
+                        .signWith(SignatureAlgorithm.HS256, "deean123")
                         .compact();
                 return new ResultVO(ResStatus.success, token, users.getFirst());
             } else {
