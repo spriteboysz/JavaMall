@@ -723,10 +723,10 @@
                             keyword: ""
                         }
                     },
-                    created() {
+                    created: function () {
                         //从cookie中获取token、username、userImg
                         const token = getCookieValue("token");
-                        if (token != null && token !== "") {
+                        if (!(token === null || token === "")) {
                             this.isLogin = true;
                             this.username = getCookieValue("username");
                             this.userimg = getCookieValue("userimg");
@@ -770,7 +770,6 @@
                         axios.get(url3).then((res) => {
                             console.log(res.data.data);
                             this.recommendProducts = res.data.data;
-
                         });
 
                         //分类商品
@@ -779,7 +778,6 @@
                             console.log(res.data.data);
                             this.recommendCategories = res.data.data;
                         });
-
                     },
                     methods: {
                         toSearch() {
