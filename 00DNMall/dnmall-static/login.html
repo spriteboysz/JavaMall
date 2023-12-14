@@ -113,7 +113,9 @@
                             this.tips = "用户名或密码不正确";
                         } else {
                             setCookieValue("token", vo.msg);
-                            console.log(vo.msg);
+                            setCookieValue("username", vo.data.userRealName);
+                            setCookieValue("userimg", vo.data.userImage)
+                            console.log(vo)
                             window.location.href = "index.html";
                         }
                     });
