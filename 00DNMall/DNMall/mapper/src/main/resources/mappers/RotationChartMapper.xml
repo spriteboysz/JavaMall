@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.dnmall.mapper.RotationChartMapper">
+
+    <resultMap id="BaseResultMap" type="com.deean.dnmall.bean.RotationChart">
+            <id property="chartId" column="chart_id" jdbcType="INTEGER"/>
+            <result property="chartUrl" column="chart_url" jdbcType="VARCHAR"/>
+            <result property="chartColor" column="chart_color" jdbcType="VARCHAR"/>
+            <result property="productId" column="product_id" jdbcType="INTEGER"/>
+            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+            <result property="chartType" column="chart_type" jdbcType="INTEGER"/>
+            <result property="chartSeq" column="chart_seq" jdbcType="INTEGER"/>
+            <result property="chartStatus" column="chart_status" jdbcType="INTEGER"/>
+            <result property="chartCreateTime" column="chart_create_time" jdbcType="TIMESTAMP"/>
+            <result property="chartUpdateTime" column="chart_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        chart_id,chart_url,chart_color,
+        product_id,category_id,chart_type,
+        chart_seq,chart_status,chart_create_time,
+        chart_update_time
+    </sql>
+</mapper>
