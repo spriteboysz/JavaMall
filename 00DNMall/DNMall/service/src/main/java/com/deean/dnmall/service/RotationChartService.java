@@ -2,6 +2,9 @@ package com.deean.dnmall.service;
 
 import com.deean.dnmall.bean.RotationChart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.deean.dnmall.vo.ResultVO;
+
+import java.util.List;
 
 /**
 * @author Deean
@@ -9,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-12-14 23:55:56
 */
 public interface RotationChartService extends IService<RotationChart> {
-
+    ResultVO listRotationChart();
 }
