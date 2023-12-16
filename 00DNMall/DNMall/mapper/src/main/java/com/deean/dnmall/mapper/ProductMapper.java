@@ -2,6 +2,9 @@ package com.deean.dnmall.mapper;
 
 import com.deean.dnmall.bean.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.deean.dnmall.bean.ProductVO;
+
+import java.util.List;
 
 /**
 * @author Deean
@@ -10,7 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.deean.dnmall.bean.Product
 */
 public interface ProductMapper extends BaseMapper<Product> {
-
+    // 推荐商品
+    List<ProductVO> selectRecommendProducts();
 }
 
 

@@ -3,6 +3,8 @@ package com.deean.dnmall.mapper;
 import com.deean.dnmall.bean.ProductImage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author Deean
 * @description 针对表【product_image(商品图片)】的数据库操作Mapper
@@ -10,7 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.deean.dnmall.bean.ProductImage
 */
 public interface ProductImageMapper extends BaseMapper<ProductImage> {
-
+    List<ProductImage> selectProductImageByProductId();
 }
 
 

@@ -5,20 +5,49 @@
 <mapper namespace="com.deean.dnmall.mapper.ProductMapper">
 
     <resultMap id="BaseResultMap" type="com.deean.dnmall.bean.Product">
-            <id property="productId" column="product_id" jdbcType="INTEGER"/>
-            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
-            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
-            <result property="productCategoryId" column="product_category_id" jdbcType="INTEGER"/>
-            <result property="productSoldNum" column="product_sold_num" jdbcType="INTEGER"/>
-            <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
-            <result property="productContent" column="product_content" jdbcType="VARCHAR"/>
-            <result property="productCreateTime" column="product_create_time" jdbcType="TIMESTAMP"/>
-            <result property="productUpdateTime" column="product_update_time" jdbcType="TIMESTAMP"/>
+        <id property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+        <result property="productCategoryId" column="product_category_id" jdbcType="INTEGER"/>
+        <result property="productSoldNum" column="product_sold_num" jdbcType="INTEGER"/>
+        <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+        <result property="productContent" column="product_content" jdbcType="VARCHAR"/>
+        <result property="productCreateTime" column="product_create_time" jdbcType="TIMESTAMP"/>
+        <result property="productUpdateTime" column="product_update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="ProductVOMap" type="com.deean.dnmall.bean.ProductVO">
+        <id property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+        <result property="productCategoryId" column="product_category_id" jdbcType="INTEGER"/>
+        <result property="productSoldNum" column="product_sold_num" jdbcType="INTEGER"/>
+        <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+        <result property="productContent" column="product_content" jdbcType="VARCHAR"/>
+        <result property="productCreateTime" column="product_create_time" jdbcType="TIMESTAMP"/>
+        <result property="productUpdateTime" column="product_update_time" jdbcType="TIMESTAMP"/>
+        <collection property="productImages"
+                    select="com.deean.dnmall.mapper.ProductImageMapper.selectProductImageByProductId"
+                    column="product_id"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        product_id,product_name,category_id,
+        product_id
+        ,product_name,category_id,
         product_category_id,product_sold_num,product_status,
         product_content,product_create_time,product_update_time
     </sql>
+    <select id="selectRecommendProducts" resultMap="ProductVOMap">
+        select product_id,
+               product_name,
+               category_id,
+               product_category_id,
+               product_sold_num,
+               product_status,
+               product_content,
+               product_create_time,
+               product_update_time
+        from product
+        order by product_create_time desc limit 0,3
+    </select>
 </mapper>

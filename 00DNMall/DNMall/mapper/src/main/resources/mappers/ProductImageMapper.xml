@@ -19,4 +19,15 @@
         image_sort,image_main,image_created_time,
         image_updated_time
     </sql>
+    <select id="selectProductImageByProductId" resultMap="BaseResultMap">
+        select image_id,
+               product_id,
+               image_url,
+               image_sort,
+               image_main,
+               image_created_time,
+               image_updated_time
+        from product_image
+        where product_id = #{productId}
+    </select>
 </mapper>
