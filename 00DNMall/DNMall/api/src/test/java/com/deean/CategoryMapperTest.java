@@ -10,11 +10,25 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+/**
+ * Author: Deean
+ * Date: 2023-12-16 22:18
+ * FileName: api/src/test/java/dnmall/mapper
+ * Description:
+ */
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-class ApiApplicationTests {
-    @Test
-    void contextLoads() {
-    }
+public class CategoryMapperTest {
 
+    @Resource
+    private CategoryMapper categoryMapper;
+
+    @Test
+    public void categoryMapperTest() {
+        List<CategoryVO> categoryVOS = categoryMapper.selectAllCategories(0);
+        for (CategoryVO categoryVO : categoryVOS) {
+            System.out.println(categoryVO);
+        }
+    }
 }

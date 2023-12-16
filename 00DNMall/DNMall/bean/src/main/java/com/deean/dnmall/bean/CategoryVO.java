@@ -3,19 +3,21 @@ package com.deean.dnmall.bean;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
-import lombok.Data;
+import java.util.List;
 
 /**
- * 商品分类
- * @TableName category
+ * Author: Deean
+ * Date: 2023-12-16 22:07
+ * FileName: bean/src/main/java/com/deean/dnmall/bean
+ * Description:
  */
-@TableName(value ="category")
+
 @Data
-public class Category implements Serializable {
+public class CategoryVO implements Serializable {
     /**
      * 主键;分类id主键
      */
@@ -56,6 +58,11 @@ public class Category implements Serializable {
      * 背景颜色
      */
     private String categoryColor;
+
+    /**
+     * 子类
+     */
+    private List<Category> categories;
 
     @Serial
     @TableField(exist = false)
