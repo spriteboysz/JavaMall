@@ -103,7 +103,7 @@ DROP TABLE IF EXISTS product_image;
 CREATE TABLE product_image
 (
     `image_id`           int auto_increment NOT NULL COMMENT '图片主键',
-    `snapshot_id`        int                NOT NULL COMMENT '商品外键id;商品外键id',
+    `product_id`         int                NOT NULL COMMENT '商品外键id;商品外键id',
     `image_url`          varchar(90)        NOT NULL COMMENT '图片地址;图片地址',
     `image_sort`         INT                NOT NULL COMMENT '顺序;图片顺序，从小到大',
     `image_main`         INT                NOT NULL COMMENT '是否主图;是否主图，1：是，0：否',

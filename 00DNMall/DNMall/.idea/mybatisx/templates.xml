@@ -68,8 +68,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="RotationChart" />
-                  <option name="tableName" value="rotation_chart" />
+                  <option name="className" value="Category" />
+                  <option name="tableName" value="category" />
                 </TableUIInfo>
               </list>
             </option>
