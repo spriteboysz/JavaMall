@@ -1,6 +1,7 @@
 package com.deean.dnmall.controller;
 
 import com.deean.dnmall.service.CategoryService;
+import com.deean.dnmall.service.ProductService;
 import com.deean.dnmall.service.RotationChartService;
 import com.deean.dnmall.vo.ResultVO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,9 +27,10 @@ public class IndexController {
 
     @Resource
     private RotationChartService rotationChartService;
-
     @Resource
     private CategoryService categoryService;
+    @Resource
+    private ProductService productService;
 
     @GetMapping("/index-image")
     @Operation(summary = "轮播图管理")
@@ -40,5 +42,11 @@ public class IndexController {
     @Operation(summary = "主页分类管理")
     public ResultVO listCategory() {
         return categoryService.listCategories();
+    }
+
+    @GetMapping("/index-recommend")
+    @Operation(summary = "主页推荐商品管理")
+    public ResultVO listRecommendProducts() {
+        return productService.listRecommendProducts();
     }
 }
