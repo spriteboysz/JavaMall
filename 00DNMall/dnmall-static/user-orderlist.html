@@ -54,7 +54,7 @@
 							<td>时间</td>
 							<td>操作</td>
 						</tr>
-						<template v-for="order,index in orders">
+						<template v-for="(order,index) in orders">
 							<tr>
 								<td>{{index+1}}</td>
 								<td>{{order.untitled.substring(0,order.untitled.length-1)}}</td>

@@ -1001,78 +1001,78 @@
 		<script type="text/javascript" src="static/js/utils.js" ></script>
 		<script type="text/javascript" src="static/js/base.js" ></script>
 		<script type="text/javascript">
-			var layer;
+			let layer;
 			layui.use('layer', function(){
 				layer = layui.layer;
-			}); 
-			
-			var vm = new Vue({
-				el:"#container",
-				data:{
-					isLogin:false,
-					token:null,
-					username:"",
-					productId:"",
-					product:{
-						productName:"",  //让vue进行初次渲染时有数据显示
-						soldNum:0
+			});
+
+			const vm = new Vue({
+				el: "#container",
+				data: {
+					isLogin: false,
+					token: null,
+					username: "",
+					productId: "",
+					product: {
+						productName: "",  //让vue进行初次渲染时有数据显示
+						soldNum: 0
 					},
-					productImgs:[],
-					productSkus:[],
-					currentSkuIndex:0,   //当前选择的套餐的索引（默认为0）
-					skuProps:{}	,		 //相当于一个map，用于存放当前套餐的属性
-					productParams:{},
-					productCommonts:[],
-					
-					pageNum:1,
-					limit:3,
-					pageCount:0,
-					count:0,
-					
-					commontsCountMap:{},
-					chooseSkuProps:{},    	//用于记录选择的套餐属性
-					num:1					//用于记录用户购买/添加购物车的商品数量
+					productImgs: [],
+					productSkus: [],
+					currentSkuIndex: 0,   //当前选择的套餐的索引（默认为0）
+					skuProps: {},		 //相当于一个map，用于存放当前套餐的属性
+					productParams: {},
+					productCommonts: [],
+
+					pageNum: 1,
+					limit: 3,
+					pageCount: 0,
+					count: 0,
+
+					commontsCountMap: {},
+					chooseSkuProps: {},    	//用于记录选择的套餐属性
+					num: 1					//用于记录用户购买/添加购物车的商品数量
 				},
-				created:function(){
+				created: function () {
 					//获取到url传递的商品id
 					this.productId = getUrlParam("pid");
-					this.currentSkuIndex = getUrlParam("sid")!=null ? getUrlParam("sid"):0;
-					this.num = getUrlParam("num")!=null ? getUrlParam("num"):1;
+					this.currentSkuIndex = getUrlParam("sid") != null ? getUrlParam("sid") : 0;
+					this.num = getUrlParam("num") != null ? getUrlParam("num") : 1;
 					this.token = getCookieValue("token");
-					if(this.token!=null && this.token!=""){
+					if (this.token != null && this.token !== "") {
 						this.isLogin = true;
 						this.username = getCookieValue("username");
 					}
-					
-					
+
+
 					//1.根据商品id查询商品基本信息
-					var url1 = baseUrl+"product/detail-info/"+this.productId;
-					axios.get(url1).then((res)=>{
+					var url1 = baseUrl + "product/detail-info/" + this.productId;
+					axios.get(url1).then((res) => {
 						var map = res.data.data;
 						this.product = map.product;
 						this.productImgs = map.productImgs;
 						this.productSkus = map.productSkus;
 						//skuProps默认显示第一个套餐的属性
 						var str = this.productSkus[0].untitled;
-						this.skuProps = eval("("+str+")");
+						this.skuProps = eval("(" + str + ")");
 					});
-					
+
 					//2.根据商品id查询商品参数信息
-					var url2 = baseUrl+"product/detail-params/"+this.productId;
-					axios.get(url2).then((res)=>{
+					var url2 = baseUrl + "product/detail-params/" + this.productId;
+					axios.get(url2).then((res) => {
 						this.productParams = res.data.data;
 					});
-					
+
 					//3.根据商品id查询商品评论信息
-					var url3 = baseUrl+"product/detail-commonts/"+this.productId;
-					axios.get(url3,{
-						params:{
-							pageNum:this.pageNum,
-							limit:this.limit
+					var url3 = baseUrl + "product/detail-commonts/" + this.productId;
+					axios.get(url3, {
+						params: {
+							pageNum: this.pageNum,
+							limit: this.limit
 						}
-					}).then((res)=>{
+					}).then((res) => {
 						//获取到评论分页数据
-						var pageHelper = res.data.data;
+						const pageHelper = res.data.data;
 						//当前页的评论列表
 						this.productCommonts = pageHelper.list;
 						//总页数
@@ -1080,20 +1080,20 @@
 						//总记录数
 						this.count = pageHelper.count;
 					});
-					
+
 					//4.根据商品id查询商品评价统计
-					var url4 = baseUrl+"product/detail-commontscount/"+this.productId;
-					axios.get(url4).then((res)=>{
+					var url4 = baseUrl + "product/detail-commontscount/" + this.productId;
+					axios.get(url4).then((res) => {
 						this.commontsCountMap = res.data.data;
 						console.log(this.commontsCountMap);
 					});
-					
+
 				},
-				updated:function(){
+				updated: function () {
 					//每次重新渲染之后执行
 					//====>初始化放大镜效果
 					$(".jqzoom").imagezoom();
-					$("#thumblist li a").click(function() {
+					$("#thumblist li a").click(function () {
 						$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
 						$(".jqzoom").attr('src', $(this).find("img").attr("mid"));
 						$(".jqzoom").attr('rel', $(this).find("img").attr("big"));
@@ -1101,28 +1101,28 @@
 					//初始化套餐属性的选择效果
 					//initChoose();
 				},
-				methods:{
-					changeSku:function(event){
+				methods: {
+					changeSku: function (event) {
 						//获取点击的套餐的索引
 						this.currentSkuIndex = event.srcElement.dataset.index;
-						var str = this.productSkus[this.currentSkuIndex].untitled;
-						this.skuProps = eval("("+str+")");
+						const str = this.productSkus[this.currentSkuIndex].untitled;
+						this.skuProps = eval("(" + str + ")");
 						//重新定义选中效果（调用定义在list.js中的initChoose函数）
 						//initChoose();
 					},
-					
-					pager:function(currentPage){
+
+					pager: function (currentPage) {
 						this.pageNum = currentPage;
 						//请求下一页数据
-						var url3 = baseUrl+"product/detail-commonts/"+this.productId;
-						axios.get(url3,{
-							params:{
-								pageNum:this.pageNum,
-								limit:this.limit
+						const url3 = baseUrl + "product/detail-commonts/" + this.productId;
+						axios.get(url3, {
+							params: {
+								pageNum: this.pageNum,
+								limit: this.limit
 							}
-						}).then((res)=>{
+						}).then((res) => {
 							//获取到评论分页数据
-							var pageHelper = res.data.data;
+							const pageHelper = res.data.data;
 							//当前页的评论列表
 							this.productCommonts = pageHelper.list;
 							//总页数
@@ -1131,32 +1131,32 @@
 							this.count = pageHelper.count;
 						});
 					},
-					
-					changeProp:function(event){
-						var key = event.srcElement.dataset.key;
-						var v = event.srcElement.dataset.v;
-						this.chooseSkuProps[key]=v;
+
+					changeProp: function (event) {
+						const key = event.srcElement.dataset.key;
+						const v = event.srcElement.dataset.v;
+						this.chooseSkuProps[key] = v;
 						console.log(this.chooseSkuProps);
-						
+
 						//选择效果：
-						$("li[name='"+key+"']").removeClass("selected");
+						$("li[name='" + key + "']").removeClass("selected");
 						//让点击的选项有选中效果
-						$("li[name='"+key+"'][data-v='"+v+"']").addClass("selected");
+						$("li[name='" + key + "'][data-v='" + v + "']").addClass("selected");
 					},
-					
-					changeNum:function(m){
-						if(m == -1 && this.num>1){
-							this.num = this.num-1;
-						}else if(m == 1 && this.num < this.productSkus[this.currentSkuIndex].stock ){
-							this.num = parseInt(this.num)+ 1;
+
+					changeNum: function (m) {
+						if (m === -1 && this.num > 1) {
+							this.num = this.num - 1;
+						} else if (m === 1 && this.num < this.productSkus[this.currentSkuIndex].stock) {
+							this.num = parseInt(this.num) + 1;
 						}
 					},
-					
-					addShopCart:function(){
+
+					addShopCart: function () {
 						//套参属性转换成字符串
 						var propStr = "";
-						for(var key in this.chooseSkuProps){   
-							propStr+= key+":"+  this.chooseSkuProps[key] +";";
+						for (var key in this.chooseSkuProps) {
+							propStr += key + ":" + this.chooseSkuProps[key] + ";";
 						}
 						//从cookie获取userId
 						var uid = getCookieValue("userId");
@@ -1166,60 +1166,60 @@
 							"productId": this.productId,
 							"productPrice": this.productSkus[this.currentSkuIndex].sellPrice,
 							"skuId": this.productSkus[this.currentSkuIndex].skuId,
-							"skuProps":propStr ,
+							"skuProps": propStr,
 							"userId": uid
 						};
 						//从cookie中获取token
 						var token = getCookieValue("token");
 						//添加购物车
-						var url5 = baseUrl+"shopcart/add"
+						var url5 = baseUrl + "shopcart/add"
 						axios({
-							url:url5,
-							method:"post",
-							headers:{
-								token:token
+							url: url5,
+							method: "post",
+							headers: {
+								token: token
 							},
 							data: cart
-						}).then((res)=>{
+						}).then((res) => {
 							console.log(res);
 							//处理添加购物车的回调
-							if(res.data.code == 10000){
+							if (res.data.code === 10000) {
 								//添加购物车成功！
 								layer.msg("添加购物车成功！");
-							}else if(res.data.code == 10001){
+							} else if (res.data.code === 10001) {
 								//添加购物车失败！
 								layer.msg("添加购物车失败！");
-							}else{
-								var str = "";
-								if(res.data.code == 20001){
+							} else {
+								let str = "";
+								if (res.data.code === 20001) {
 									str = "请先登录！";
-								}else if(res.data.code == 20002){
+								} else if (res.data.code === 20002) {
 									str = "登录过期，请重新登录！";
 								}
-								var params = "tips="+str+"&returnUrl=introduction.html&pid="
-								                +this.productId+"&sid="+this.currentSkuIndex+"&num="+this.num;
-								                
-								var loginUrl = "login.html?"+params;
-								
+								const params = "tips=" + str + "&returnUrl=introduction.html&pid="
+										+ this.productId + "&sid=" + this.currentSkuIndex + "&num=" + this.num;
+
+								const loginUrl = "login.html?" + params;
+
 								//跳转到登录页面
-								window.location.href= encodeURI(loginUrl);
+								window.location.href = encodeURI(loginUrl);
 							}
-							
+
 						});
 					}
-					
+
 				},
-				watch:{
-					skuProps:function(){
+				watch: {
+					skuProps: function () {
 						this.chooseSkuProps = {};
-						for(var key in this.skuProps){
+						for (const key in this.skuProps) {
 							this.chooseSkuProps[key] = this.skuProps[key][0];
 						}
 						console.log(this.chooseSkuProps);
 					}
 				}
 			});
-			
+
 		</script>
 		
 		
