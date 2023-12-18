@@ -49,4 +49,10 @@ public class IndexController {
     public ResultVO listRecommendProducts() {
         return productService.listRecommendProducts();
     }
+
+    @GetMapping("/category-recommend")
+    @Operation(summary = "主页分类推荐商品管理")
+    public ResultVO listRecommendProductsByCategory() {
+        return categoryService.listFirstLevelCategories();
+    }
 }

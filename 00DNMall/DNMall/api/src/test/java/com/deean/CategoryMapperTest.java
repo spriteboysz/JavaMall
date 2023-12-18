@@ -31,4 +31,12 @@ public class CategoryMapperTest {
             System.out.println(categoryVO);
         }
     }
+
+    @Test
+    public void categoryMapperTest02() {
+        List<CategoryVO> categoryVOS = categoryMapper.selectFirstLevelCategories();
+        for (CategoryVO categoryVO : categoryVOS) {
+            System.out.println(categoryVO);
+        }
+    }
 }

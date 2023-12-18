@@ -29,6 +29,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>
         List<CategoryVO> categoryVOS = categoryMapper.selectAllCategories(0);
         return new ResultVO(ResStatus.success, "success", categoryVOS);
     }
+
+    @Override
+    public ResultVO listFirstLevelCategories() {
+        List<CategoryVO> categoryVOS = categoryMapper.selectFirstLevelCategories();
+        return new ResultVO(ResStatus.success, "success", categoryVOS);
+    }
 }
 
 

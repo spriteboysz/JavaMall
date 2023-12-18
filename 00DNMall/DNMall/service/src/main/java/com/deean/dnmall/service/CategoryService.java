@@ -11,4 +11,6 @@ import com.deean.dnmall.vo.ResultVO;
 */
 public interface CategoryService extends IService<Category> {
     ResultVO listCategories();
+
+    ResultVO listFirstLevelCategories();
 }
