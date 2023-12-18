@@ -50,4 +50,18 @@
         from product
         order by product_create_time desc limit 0,3
     </select>
+
+    <select id="selectTopByCategory" resultMap="ProductVOMap">
+        select product_id,
+               product_name,
+               category_id,
+               product_category_id,
+               product_sold_num,
+               product_status,
+               product_content,
+               product_create_time,
+               product_update_time
+        from product
+        order by product_sold_num desc limit 0,6
+    </select>
 </mapper>

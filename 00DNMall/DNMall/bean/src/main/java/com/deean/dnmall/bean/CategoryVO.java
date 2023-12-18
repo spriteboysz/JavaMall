@@ -64,6 +64,8 @@ public class CategoryVO implements Serializable {
      */
     private List<Category> categories;
 
+    private List<ProductVO> products;
+
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

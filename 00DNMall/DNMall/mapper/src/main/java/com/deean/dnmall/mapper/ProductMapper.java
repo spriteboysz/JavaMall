@@ -15,6 +15,8 @@ import java.util.List;
 public interface ProductMapper extends BaseMapper<Product> {
     // 推荐商品
     List<ProductVO> selectRecommendProducts();
+
+    List<ProductVO> selectTopByCategory();
 }
 
 
