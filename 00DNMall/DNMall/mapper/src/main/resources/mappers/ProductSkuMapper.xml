@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.dnmall.mapper.ProductSkuMapper">
+
+    <resultMap id="BaseResultMap" type="com.deean.dnmall.bean.ProductSku">
+            <id property="skuId" column="sku_id" jdbcType="INTEGER"/>
+            <result property="productId" column="product_id" jdbcType="INTEGER"/>
+            <result property="skuName" column="sku_name" jdbcType="VARCHAR"/>
+            <result property="skuImage" column="sku_image" jdbcType="VARCHAR"/>
+            <result property="skuUntitled" column="sku_untitled" jdbcType="VARCHAR"/>
+            <result property="skuOriginalPrice" column="sku_original_price" jdbcType="INTEGER"/>
+            <result property="skuSellPrice" column="sku_sell_price" jdbcType="INTEGER"/>
+            <result property="skuDiscounts" column="sku_discounts" jdbcType="DECIMAL"/>
+            <result property="skuStock" column="sku_stock" jdbcType="INTEGER"/>
+            <result property="skuCreateTime" column="sku_create_time" jdbcType="TIMESTAMP"/>
+            <result property="skuUpdateTime" column="sku_update_time" jdbcType="TIMESTAMP"/>
+            <result property="skuStatus" column="sku_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sku_id,product_id,sku_name,
+        sku_image,sku_untitled,sku_original_price,
+        sku_sell_price,sku_discounts,sku_stock,
+        sku_create_time,sku_update_time,sku_status
+    </sql>
+</mapper>

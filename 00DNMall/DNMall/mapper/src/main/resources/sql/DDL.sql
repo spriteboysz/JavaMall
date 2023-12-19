@@ -125,7 +125,7 @@ CREATE TABLE product_sku
     `sku_discounts`      decimal(4, 2)      NOT NULL COMMENT '折扣力度',
     `sku_stock`          INT                NOT NULL COMMENT '库存',
     `sku_create_time`    datetime           NOT NULL COMMENT '创建时间',
-    `sku_update_time`    decimal            NOT NULL COMMENT '更新时间',
+    `sku_update_time`    datetime           NOT NULL COMMENT '更新时间',
     `sku_status`         INT COMMENT 'sku状态(1启用，0禁用，-1删除)',
     PRIMARY KEY (sku_id)
 ) COMMENT = '商品规格;每一件商品都有不同的规格，不同的规格又有不同的价格和优惠力度，规格表为此设计';
