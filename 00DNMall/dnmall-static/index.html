@@ -275,7 +275,7 @@
                         <img src="static/images/2016.png" style="border-radius: 50%;" alt=""/>
                         <p>今日<br>推荐</p>
                     </div>
-                    <a v-for="rp in recommendProducts" :href="'introduction.html?pid='+rp.productId">
+                    <a v-for="rp in recommendProducts" :href="'introduction.html?product_id='+rp.productId">
                         <div class="am-u-sm-4 am-u-lg-3 ">
                             <div class="info ">
                                 <h3>{{rp.productName}}</h3>
@@ -486,7 +486,7 @@
                             <a href="#">物流</a>
                         </p>
                     </div>
-                    <div class="footer-bd ">
+                    <div class="footer-bd">
                         <p>
                             <a href="#">关于千锋</a>
                             <a href="#">合作伙伴</a>
@@ -696,6 +696,7 @@
                 created: function () {
                     //从cookie中获取token、username、userImage
                     const token = getCookieValue("token");
+                    console.log("index = " + token)
                     if (!(token === null || token === "")) {
                         this.isLogin = true;
                         this.username = getCookieValue("username");
