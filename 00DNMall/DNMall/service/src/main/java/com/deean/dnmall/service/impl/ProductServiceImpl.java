@@ -2,14 +2,21 @@ package com.deean.dnmall.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.deean.dnmall.bean.Product;
+import com.deean.dnmall.bean.ProductImage;
+import com.deean.dnmall.bean.ProductSku;
 import com.deean.dnmall.bean.ProductVO;
+import com.deean.dnmall.mapper.ProductImageMapper;
 import com.deean.dnmall.mapper.ProductMapper;
+import com.deean.dnmall.mapper.ProductSkuMapper;
 import com.deean.dnmall.service.ProductService;
 import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,11 +30,45 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
 
     @Resource
     private ProductMapper productMapper;
+    @Resource
+    private ProductImageMapper productImageMapper;
+    @Resource
+    private ProductSkuMapper productSkuMapper;
 
     @Override
     public ResultVO listRecommendProducts() {
         List<ProductVO> productVOS = productMapper.selectRecommendProducts();
         return new ResultVO(ResStatus.success, "success", productVOS);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public ResultVO getProductBasicInfo(int productId) {
+        // 1.商品基本信息
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("product_id", productId);
+        map.put("product_status", 1);
+        List<Product> products = productMapper.selectByMap(map);
+
+        if (!products.isEmpty()) {
+            // 2. 商品图片信息
+            HashMap<String, Object> map1 = new HashMap<>();
+            map1.put("product_id", productId);
+            List<ProductImage> productImages = productImageMapper.selectByMap(map1);
+            // 3. 商品SKU信息
+            HashMap<String, Object> map2 = new HashMap<>();
+            map2.put("product_id", productId);
+            map2.put(" sku_status", 1);
+            List<ProductSku> productSkus = productSkuMapper.selectByMap(map2);
+
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("product", products.getFirst());
+            hashMap.put("productImage", productImages);
+            hashMap.put("productSku", productSkus);
+            return new ResultVO(ResStatus.success, "success", hashMap);
+        } else {
+            return new ResultVO(ResStatus.fail, "fail", null);
+        }
     }
 }
 

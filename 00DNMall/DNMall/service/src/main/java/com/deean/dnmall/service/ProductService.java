@@ -11,4 +11,6 @@ import com.deean.dnmall.vo.ResultVO;
  */
 public interface ProductService extends IService<Product> {
     ResultVO listRecommendProducts();
+
+    ResultVO getProductBasicInfo(int productId);
 }
