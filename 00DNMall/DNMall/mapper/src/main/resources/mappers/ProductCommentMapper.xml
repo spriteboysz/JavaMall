@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deean.dnmall.mapper.ProductCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.deean.dnmall.bean.ProductComment">
+            <id property="commentId" column="comment_id" jdbcType="INTEGER"/>
+            <result property="productId" column="product_id" jdbcType="INTEGER"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="snapshotId" column="snapshot_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="commentAnonymous" column="comment_anonymous" jdbcType="INTEGER"/>
+            <result property="commentType" column="comment_type" jdbcType="INTEGER"/>
+            <result property="commentLevel" column="comment_level" jdbcType="INTEGER"/>
+            <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
+            <result property="commentImage" column="comment_image" jdbcType="VARCHAR"/>
+            <result property="commentTime" column="comment_time" jdbcType="TIMESTAMP"/>
+            <result property="commentReplyStatus" column="comment_reply_status" jdbcType="INTEGER"/>
+            <result property="commentReplyContent" column="comment_reply_content" jdbcType="VARCHAR"/>
+            <result property="commentReplyTime" column="comment_reply_time" jdbcType="TIMESTAMP"/>
+            <result property="commentShow" column="comment_show" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        comment_id,product_id,product_name,
+        snapshot_id,user_id,comment_anonymous,
+        comment_type,comment_level,comment_content,
+        comment_image,comment_time,comment_reply_status,
+        comment_reply_content,comment_reply_time,comment_show
+    </sql>
+</mapper>
