@@ -193,11 +193,14 @@
                     <div class="tb-detail-price">
                         <li class="price iteminfo_price">
                             <dt>促销价</dt>
-                            <dd><em>¥</em><b class="sys_item_price">56.90</b></dd>
+                            <dd><em>¥</em><b class="sys_item_price"></b>{{productSkus[currentSkuIndex].skuSellPrice}}
+                            </dd>
                         </li>
                         <li class="price iteminfo_mktprice">
                             <dt>原价</dt>
-                            <dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>
+                            <dd><em>¥</em><b
+                                    class="sys_item_mktprice"></b>{{productSkus[currentSkuIndex].skuOriginalPrice}}
+                            </dd>
                         </li>
                         <div class="clear"></div>
                     </div>
@@ -491,16 +494,15 @@
                                     <h4>产品参数：</h4></div>
                                 <div class="clear"></div>
                                 <ul id="J_AttrUL">
-                                    <li title="">产品类型:&nbsp;烘炒类</li>
-                                    <li title="">原料产地:&nbsp;巴基斯坦</li>
-                                    <li title="">产地:&nbsp;湖北省武汉市</li>
-                                    <li title="">配料表:&nbsp;进口松子、食用盐</li>
-                                    <li title="">产品规格:&nbsp;210g</li>
-                                    <li title="">保质期:&nbsp;180天</li>
-                                    <li title="">产品标准号:&nbsp;GB/T 22165</li>
-                                    <li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li>
-                                    <li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存</li>
-                                    <li title="">食用方法：&nbsp;开袋去壳即食</li>
+                                    <li title="">产地:&nbsp;{{productParams.paramPlace}}</li>
+                                    <li title="">保质期:&nbsp;{{productParams.paramPeriod}}</li>
+                                    <li title="">品牌:&nbsp;{{productParams.paramBrand}}</li>
+                                    <li title="">生产厂商:&nbsp;{{productParams.paramFactory}}</li>
+                                    <li title="">生产地址:&nbsp;{{productParams.paramAddress}}</li>
+                                    <li title="">包装方式:&nbsp;{{productParams.paramPackaging}}</li>
+                                    <li title="">规格重量:&nbsp;{{productParams.paramWeight}}</li>
+                                    <li title="">储存方式：&nbsp;{{productParams.paramStorage}}</li>
+                                    <li title="">食用方式：&nbsp;{{productParams.paramEatingMethod}}</li>
                                 </ul>
                                 <div class="clear"></div>
                             </div>
@@ -510,13 +512,7 @@
                                     <h4>商品细节</h4>
                                 </div>
                                 <div class="twlistNews">
-                                    <img src="static/images/tw1.jpg" alt=""/>
-                                    <img src="static/images/tw2.jpg" alt=""/>
-                                    <img src="static/images/tw3.jpg" alt=""/>
-                                    <img src="static/images/tw4.jpg" alt=""/>
-                                    <img src="static/images/tw5.jpg" alt=""/>
-                                    <img src="static/images/tw6.jpg" alt=""/>
-                                    <img src="static/images/tw7.jpg" alt=""/>
+                                    <span v-html="product.productContent"></span>
                                 </div>
                             </div>
                             <div class="clear"></div>
@@ -1407,12 +1403,34 @@
             const url1 = baseUrl + "product/detail-info/" + this.productId;
             axios.get(url1).then((res) => {
                 const map = res.data.data;
-                console.log("product = " + map)
+                console.log("map:")
+                console.log(res.data.data);
                 this.product = map.product;
-                this.productImages = map.productImages;
-                this.productSkus = map.productSkus;
+                console.log("product:")
+                console.log(this.product);
+                this.productImages = map.productImage;
+                console.log("productImage:")
+                console.log(this.productImages)
+                this.productSkus = map.productSku;
+                console.log("productSku:")
+                console.log(this.productSkus)
                 const str = this.productSkus[0].skuUntitled;
                 this.skuProps = eval("(" + str + ")");
+            });
+
+            //2.根据商品id查询商品参数信息
+            const url2 = baseUrl + "product/param-info/" + this.productId;
+            axios.get(url2).then((res) => {
+                this.productParams = res.data.data;
+                console.log(this.productParams);
+            });
+        },
+        update() {
+            $(".jqzoom").imagezoom();
+            $("#thumblist li a").click(function () {
+                $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+                $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
+                $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
             });
         },
         methods: {}
