@@ -1,26 +1,20 @@
 package com.deean.dnmall.bean;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 商品评价
+ *
  * @TableName product_comment
  */
-@TableName(value ="product_comment")
 @Data
-public class ProductComment implements Serializable {
+public class ProductCommentVO implements Serializable {
     /**
      * ID
      */
-    @TableId(type = IdType.AUTO)
     private Integer commentId;
 
     /**
@@ -93,7 +87,9 @@ public class ProductComment implements Serializable {
      */
     private Integer commentShow;
 
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+
+    private String username;
+    private String userNickName;
+    private String userImage;
+
 }

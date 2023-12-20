@@ -23,9 +23,16 @@ public class ProductController {
     @Resource
     private ProductService productService;
 
+
     @Operation(summary = "商品基本信息查询接口")
     @GetMapping("/detail-info/{product_id}")
     private ResultVO getProductBasicInfo(@PathVariable("product_id") int productId) {
         return productService.getProductBasicInfo(productId);
+    }
+
+    @Operation(summary = "商品参数信息查询接口")
+    @GetMapping("/param-info/{product_id}")
+    private ResultVO getProductParamInfo(@PathVariable("product_id") int productId) {
+        return productService.getProductParamInfo(productId);
     }
 }

@@ -1,12 +1,10 @@
 package com.deean.dnmall.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.deean.dnmall.bean.Product;
-import com.deean.dnmall.bean.ProductImage;
-import com.deean.dnmall.bean.ProductSku;
-import com.deean.dnmall.bean.ProductVO;
+import com.deean.dnmall.bean.*;
 import com.deean.dnmall.mapper.ProductImageMapper;
 import com.deean.dnmall.mapper.ProductMapper;
+import com.deean.dnmall.mapper.ProductParamMapper;
 import com.deean.dnmall.mapper.ProductSkuMapper;
 import com.deean.dnmall.service.ProductService;
 import com.deean.dnmall.vo.ResStatus;
@@ -34,6 +32,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
     private ProductImageMapper productImageMapper;
     @Resource
     private ProductSkuMapper productSkuMapper;
+    @Resource
+    private ProductParamMapper productParamMapper;
+
 
     @Override
     public ResultVO listRecommendProducts() {
@@ -70,8 +71,19 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
             return new ResultVO(ResStatus.fail, "fail", null);
         }
     }
-}
 
+    @Override
+    public ResultVO getProductParamInfo(int productId) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("product_id", productId);
+        List<ProductParam> productParams = productParamMapper.selectByMap(map);
+        if (productParams.isEmpty()) {
+            return new ResultVO(ResStatus.fail, "fail", null);
+        } else {
+            return new ResultVO(ResStatus.success, "success", productParams);
+        }
+    }
+}
 
 
 

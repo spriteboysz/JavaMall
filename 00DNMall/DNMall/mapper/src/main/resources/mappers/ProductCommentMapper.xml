@@ -29,4 +29,51 @@
         comment_image,comment_time,comment_reply_status,
         comment_reply_content,comment_reply_time,comment_show
     </sql>
+
+    <resultMap id="ProductCommentVOMap" type="com.deean.dnmall.bean.ProductCommentVO">
+        <id property="commentId" column="comment_id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="snapshotId" column="snapshot_id" jdbcType="INTEGER"/>
+        <result property="commentAnonymous" column="comment_anonymous" jdbcType="INTEGER"/>
+        <result property="commentType" column="comment_type" jdbcType="INTEGER"/>
+        <result property="commentLevel" column="comment_level" jdbcType="INTEGER"/>
+        <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
+        <result property="commentImage" column="comment_image" jdbcType="VARCHAR"/>
+        <result property="commentTime" column="comment_time" jdbcType="TIMESTAMP"/>
+        <result property="commentReplyStatus" column="comment_reply_status" jdbcType="INTEGER"/>
+        <result property="commentReplyContent" column="comment_reply_content" jdbcType="VARCHAR"/>
+        <result property="commentReplyTime" column="comment_reply_time" jdbcType="TIMESTAMP"/>
+        <result property="commentShow" column="comment_show" jdbcType="INTEGER"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="username" />
+        <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
+        <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+    </resultMap>
+
+    <select id="selectCommentsByProductId" resultMap="ProductCommentVOMap">
+        select u.user_name,
+               u.user_nick_name,
+               u.user_image,
+               c.comment_id,
+               c.product_id,
+               c.product_name,
+               c.snapshot_id,
+               c.user_id,
+               c.comment_anonymous,
+               c.comment_type,
+               c.comment_level,
+               c.comment_content,
+               c.comment_image,
+               c.comment_time,
+               c.comment_reply_status,
+               c.comment_reply_content,
+               c.comment_reply_time,
+               c.comment_show
+        from product_comments c
+                 INNER JOIN users u
+                            ON u.user_id = c.user_id
+        WHERE c.product_id = #{productId} limit #{start}
+            , #{limit}
+    </select>
 </mapper>
