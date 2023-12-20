@@ -80,7 +80,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
         if (productParams.isEmpty()) {
             return new ResultVO(ResStatus.fail, "fail", null);
         } else {
-            return new ResultVO(ResStatus.success, "success", productParams);
+            return new ResultVO(ResStatus.success, "success", productParams.getFirst());
         }
     }
 }
