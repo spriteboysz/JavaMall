@@ -12,6 +12,7 @@ import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,7 +30,44 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
 
     @Override
     public ResultVO getCommentCountByProductId(int productId) {
-        return null;
+
+        QueryWrapper<ProductComment> wrapper = new QueryWrapper<>();
+        //1.查询当前商品评价的总数
+        HashMap<String, Object> hash = new HashMap<>();
+        hash.put("product_id", productId);
+        wrapper.allEq(hash);
+        Long total = productCommentMapper.selectCount(wrapper);
+
+        //2.查询好评评价数
+        hash.put("comment_type", 1);
+        wrapper.clear();
+        wrapper.allEq(hash);
+        Long goodTotal = productCommentMapper.selectCount(wrapper);
+
+        //3.查询中评评价数
+        hash.put("comment_type", 0);
+        wrapper.clear();
+        wrapper.allEq(hash);
+        Long midTotal = productCommentMapper.selectCount(wrapper);
+
+        //4.查询差评评价数
+        hash.put("comment_type", -1);
+        wrapper.clear();
+        wrapper.allEq(hash);
+        Long badTotal = productCommentMapper.selectCount(wrapper);
+
+        //5.计算好评率
+        double percent = (Double.parseDouble(goodTotal + "") / Double.parseDouble(total + "")) * 100;
+        String percentValue = (percent + "").substring(0, (percent + "").lastIndexOf(".") + 3);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("total", total);
+        map.put("goodTotal", goodTotal);
+        map.put("midTotal", midTotal);
+        map.put("badTotal", badTotal);
+        map.put("percent", percentValue);
+
+        return new ResultVO(ResStatus.success, "success", map);
     }
 
     @Override
