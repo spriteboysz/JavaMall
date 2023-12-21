@@ -6,6 +6,7 @@ import com.deean.dnmall.bean.ProductComment;
 import com.deean.dnmall.bean.ProductCommentVO;
 import com.deean.dnmall.mapper.ProductCommentMapper;
 import com.deean.dnmall.service.ProductCommentService;
+import com.deean.dnmall.util.PageHelper;
 import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
@@ -27,7 +28,12 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
 
 
     @Override
-    public ResultVO listCommontsByProductId(int productId, int pageNum, int limit) {
+    public ResultVO getCommentCountByProductId(int productId) {
+        return null;
+    }
+
+    @Override
+    public ResultVO listCommentsByProductId(int productId, int pageNum, int limit) {
         //1.根据商品id查询总记录数
         QueryWrapper<ProductComment> wrapper = new QueryWrapper<>();
         //eq() 等于
@@ -42,7 +48,7 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
         int start = (pageNum - 1) * limit;
         List<ProductCommentVO> list = productCommentMapper.selectCommentsByProductId(productId, start, limit);
 
-        return new ResultVO(ResStatus.success, "success", list);
+        return new ResultVO(ResStatus.success, "success", new PageHelper<>(count, pageCount, list));
     }
 }
 

@@ -1,8 +1,11 @@
 package com.deean.dnmall.controller;
 
+import com.deean.dnmall.service.ProductCommentService;
 import com.deean.dnmall.service.ProductService;
 import com.deean.dnmall.vo.ResultVO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,8 @@ public class ProductController {
 
     @Resource
     private ProductService productService;
+    @Resource
+    private ProductCommentService productCommentService;
 
 
     @Operation(summary = "商品基本信息查询接口")
@@ -34,5 +39,21 @@ public class ProductController {
     @GetMapping("/param-info/{product_id}")
     private ResultVO getProductParamInfo(@PathVariable("product_id") int productId) {
         return productService.getProductParamInfo(productId);
+    }
+
+    @Operation(summary = "商品评论信息查询接口")
+    @GetMapping("/detail-comments/{product_id}")
+    @Parameters({
+            @Parameter(name = "pageNum", required = true),
+            @Parameter(name = "limit", required = true)
+    })
+    public ResultVO getProductComments(@PathVariable("product_id") int productId, int pageNum, int limit) {
+        return productCommentService.listCommentsByProductId(productId, pageNum, limit);
+    }
+
+    @Operation(summary = "商品评价统计查询接口")
+    @GetMapping("/detail-comment-count/{product_id}")
+    public ResultVO getProductCommentsCount(@PathVariable("product_id") int productId) {
+        return productCommentService.getCommentCountByProductId(productId);
     }
 }

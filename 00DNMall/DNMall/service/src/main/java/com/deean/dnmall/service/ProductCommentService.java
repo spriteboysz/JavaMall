@@ -10,5 +10,8 @@ import com.deean.dnmall.vo.ResultVO;
 * @createDate 2023-12-20 21:53:51
 */
 public interface ProductCommentService extends IService<ProductComment> {
-    ResultVO listCommontsByProductId(int productId, int pageNum, int limit);
+
+    ResultVO getCommentCountByProductId(int productId);
+
+    ResultVO listCommentsByProductId(int productId, int pageNum, int limit);
 }
