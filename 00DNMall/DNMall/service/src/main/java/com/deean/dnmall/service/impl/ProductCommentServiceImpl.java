@@ -80,7 +80,7 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
         Long count = productCommentMapper.selectCount(wrapper);
 
         //2.计算总页数（必须确定每页显示多少条  pageSize = limit）
-        int pageCount = (int) (count % limit == 0 ? count / limit : count / limit + 1);
+        int pageCount = (int) Math.floor(count * 1.0 / limit);
 
         //3.查询当前页的数据（因为评论中需要用户信息，因此需要连表查询---自定义）
         int start = (pageNum - 1) * limit;
