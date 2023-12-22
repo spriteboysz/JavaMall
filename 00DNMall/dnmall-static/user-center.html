@@ -159,7 +159,7 @@
 					}else{
 						//如果登录过期需要重新登录，创建一个校验用户登录的接口，通过请求这个接口进行token的检验
 						// user/check
-						var url1 = baseUrl+"user/check";
+						const url1 = baseUrl + "user/check";
 						axios({
 							url:url1,
 							method:"get",
