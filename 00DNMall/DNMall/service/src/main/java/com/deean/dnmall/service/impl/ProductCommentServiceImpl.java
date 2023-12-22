@@ -66,7 +66,6 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
         map.put("midTotal", midTotal);
         map.put("badTotal", badTotal);
         map.put("percent", percentValue);
-
         return new ResultVO(ResStatus.success, "success", map);
     }
 
@@ -76,7 +75,6 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
         QueryWrapper<ProductComment> wrapper = new QueryWrapper<>();
         //eq() 等于
         wrapper.eq("product_id", productId);
-
         Long count = productCommentMapper.selectCount(wrapper);
 
         //2.计算总页数（必须确定每页显示多少条  pageSize = limit）
@@ -85,7 +83,6 @@ public class ProductCommentServiceImpl extends ServiceImpl<ProductCommentMapper,
         //3.查询当前页的数据（因为评论中需要用户信息，因此需要连表查询---自定义）
         int start = (pageNum - 1) * limit;
         List<ProductCommentVO> list = productCommentMapper.selectCommentsByProductId(productId, start, limit);
-
         return new ResultVO(ResStatus.success, "success", new PageHelper<>(count, pageCount, list));
     }
 }
