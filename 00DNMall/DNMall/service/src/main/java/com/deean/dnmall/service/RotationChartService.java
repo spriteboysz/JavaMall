@@ -1,10 +1,8 @@
 package com.deean.dnmall.service;
 
-import com.deean.dnmall.bean.RotationChart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.deean.dnmall.bean.RotationChart;
 import com.deean.dnmall.vo.ResultVO;
-
-import java.util.List;
 
 /**
 * @author Deean

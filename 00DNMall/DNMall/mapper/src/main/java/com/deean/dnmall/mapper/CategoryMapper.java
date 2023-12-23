@@ -1,9 +1,8 @@
 package com.deean.dnmall.mapper;
 
-import com.deean.dnmall.bean.Category;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.deean.dnmall.bean.Category;
 import com.deean.dnmall.bean.CategoryVO;
-import com.deean.dnmall.bean.ProductVO;
 
 import java.util.List;
 
