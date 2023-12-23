@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -35,24 +35,25 @@
                 <div class="menu-hd"><a href="index.html" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
-                <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                <div class="menu-hd MyShangcheng"><a href="#" target="_top">
+                    <i class="am-icon-user am-icon-fw"></i>个人中心</a>
                 </div>
             </div>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
-                        class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
-                                                                                                 class="h">0</strong></a>
+                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top">
+                    <i class="am-icon-shopping-cart  am-icon-fw"></i>
+                    <span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a>
                 </div>
             </div>
             <div class="topMessage favorite">
-                <div class="menu-hd"><a href="#" target="_top"><i
-                        class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+                <div class="menu-hd"><a href="#" target="_top">
+                    <i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a>
+                </div>
             </div>
         </ul>
     </div>
 
     <!--悬浮搜索框-->
-
     <div class="nav white">
         <div class="logo"><img src="static/images/logo.png" alt=""/></div>
         <div class="logoBig">
@@ -129,7 +130,7 @@
                 </div>
                 <div class="theme-signin-right">
                     <div class="img-info">
-                        <img src="static/images/kouhong.jpg_80x80.jpg"/>
+                        <img src="static/images/kouhong.jpg_80x80.jpg" alt=""/>
                     </div>
                     <div class="text-info">
                         <span class="J_Price price-now">¥39.00</span>
@@ -183,7 +184,7 @@
             //只要后端通过websocket向此连接发消息就会触发onmessage事件
             websocket.onmessage = function (event) {
                 var msg = event.data;
-                if (msg == "1") {
+                if (msg === "1") {
                     $("#div1").html("<label style='font-size:20px; color:green'>订单支付完成！</label>");
                 }
             }
@@ -211,8 +212,6 @@
         }
     });
 </script>
-
-
 </body>
 
 </html>

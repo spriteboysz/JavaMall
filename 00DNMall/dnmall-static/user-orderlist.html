@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,7 +9,8 @@
 	<link href="static/css/systyle.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="static/css/bootstrap.css" />
 	<!-- 引入样式 -->
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+	<style type="text/css" href="static/elementui/index.css"></style>
 	<script type="text/javascript" src="static/js/jquery-3.4.1.min.js" ></script>
 	<script type="text/javascript" src="static/js/bootstrap.js" ></script>
 </head>
@@ -143,7 +144,7 @@
 				}
 			}).then((res)=>{
 				console.log(res.data.data);
-				if(res.data.code == 10000){
+				if(res.data.code === 10000){
 					this.orders = res.data.data.list;
 					this.count = res.data.data.count;
 				}
@@ -196,7 +197,7 @@
 					}
 				}).then((res)=>{
 					console.log(res.data.data);
-					if(res.data.code == 10000){
+					if(res.data.code === 10000){
 						this.orders = res.data.data.list;
 						this.count = res.data.data.count;
 					}
