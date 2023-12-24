@@ -17,7 +17,3 @@ public interface CategoryMapper extends BaseMapper<Category> {
 
     List<CategoryVO> selectFirstLevelCategories();
 }
-
-
-
-
