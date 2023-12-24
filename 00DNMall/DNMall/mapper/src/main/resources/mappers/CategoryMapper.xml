@@ -28,8 +28,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        category_id
-        ,category_name,category_level,
+        category_id,category_name,category_level,
         category_parent_id,category_icon,category_slogan,
         category_image,category_color
     </sql>
