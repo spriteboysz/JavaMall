@@ -159,6 +159,7 @@ CREATE TABLE shopping_cart
     `cart_num`   varchar(255) NOT NULL COMMENT '购物车商品数量',
     `cart_time`  varchar(255) NOT NULL COMMENT '添加购物车时间',
     `cart_price` decimal(24, 6) COMMENT '添加购物车时商品价格',
+    `sku_props` varchar(255) NULL DEFAULT NULL COMMENT '选择的套餐的属性',
     PRIMARY KEY (cart_id)
 ) COMMENT = '购物车';
 
