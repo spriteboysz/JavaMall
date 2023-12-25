@@ -1433,7 +1433,120 @@
                 $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
             });
         },
-        methods: {}
+        methods: {
+            changeSku: function (event) {
+                //获取点击的套餐的索引
+                this.currentSkuIndex = event.srcElement.dataset.index;
+                const str = this.productSkus[this.currentSkuIndex].untitled;
+                this.skuProps = eval("(" + str + ")");
+                //重新定义选中效果（调用定义在list.js中的initChoose函数）
+                //initChoose();
+            },
+
+            pager: function (currentPage) {
+                this.pageNum = currentPage;
+                //请求下一页数据
+                const url3 = baseUrl + "product/detail-comments/" + this.productId;
+                axios.get(url3, {
+                    params: {
+                        pageNum: this.pageNum,
+                        limit: this.limit
+                    }
+                }).then((res) => {
+                    //获取到评论分页数据
+                    const pageHelper = res.data.data;
+                    //当前页的评论列表
+                    this.productComments = pageHelper.list;
+                    //总页数
+                    this.pageCount = pageHelper.pageCount;
+                    //总记录数
+                    this.count = pageHelper.count;
+                });
+            },
+            changeProp: function (event) {
+                const key = event.srcElement.dataset.key;
+                const v = event.srcElement.dataset.v;
+                this.chooseSkuProps[key] = v;
+                console.log(this.chooseSkuProps);
+
+                //选择效果：
+                $("li[name='" + key + "']").removeClass("selected");
+                //让点击的选项有选中效果
+                $("li[name='" + key + "'][data-v='" + v + "']").addClass("selected");
+            },
+
+            changeNum: function (m) {
+                if (m === -1 && this.num > 1) {
+                    this.num = this.num - 1;
+                } else if (m === 1 && this.num < this.productSkus[this.currentSkuIndex].stock) {
+                    this.num = parseInt(this.num) + 1;
+                }
+            },
+
+            addShopCart: function () {
+                //套参属性转换成字符串
+                let propStr = "";
+                for (const key in this.chooseSkuProps) {
+                    propStr += key + ":" + this.chooseSkuProps[key] + ";";
+                }
+                //从cookie获取userId
+                const uid = getCookieValue("userId");
+                //购物车信息
+                const cart = {
+                    "cartNum": this.num,
+                    "productId": this.productId,
+                    "productPrice": this.productSkus[this.currentSkuIndex].sellPrice,
+                    "skuId": this.productSkus[this.currentSkuIndex].skuId,
+                    "skuProps": propStr,
+                    "userId": uid
+                };
+                //从cookie中获取token
+                const token = getCookieValue("token");
+                //添加购物车
+                const url5 = baseUrl + "shoppingcart/add";
+                axios({
+                    url: url5,
+                    method: "post",
+                    headers: {
+                        token: token
+                    },
+                    data: cart
+                }).then((res) => {
+                    console.log(res);
+                    //处理添加购物车的回调
+                    if (res.data.code === 10000) {
+                        //添加购物车成功！
+                        layer.msg("添加购物车成功！");
+                    } else if (res.data.code === 10001) {
+                        //添加购物车失败！
+                        layer.msg("添加购物车失败！");
+                    } else {
+                        let str = "";
+                        if (res.data.code === 20001) {
+                            str = "请先登录！";
+                        } else if (res.data.code === 20002) {
+                            str = "登录过期，请重新登录！";
+                        }
+                        const params = "tips=" + str + "&returnUrl=introduction.html&pid="
+                            + this.productId + "&sid=" + this.currentSkuIndex + "&num=" + this.num;
+
+                        const loginUrl = "login.html?" + params;
+
+                        //跳转到登录页面
+                        window.location.href = encodeURI(loginUrl);
+                    }
+                });
+            }
+        },
+        watch: {
+            skuProps: function () {
+                this.chooseSkuProps = {};
+                for (const key in this.skuProps) {
+                    this.chooseSkuProps[key] = this.skuProps[key][0];
+                }
+                console.log(this.chooseSkuProps);
+            }
+        }
     });
     app.mount("#container")
 </script>
