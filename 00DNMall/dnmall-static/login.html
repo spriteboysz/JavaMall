@@ -114,9 +114,10 @@
                         } else {
                             setCookieValue("token", vo.msg);
                             setCookieValue("username", vo.data.userRealName);
+                            setCookieValue("userid", vo.data.userId);
                             setCookieValue("image", vo.data.userImage)
-                            console.log(vo)
-                            window.location.href = "index.html";
+                            console.log(vo.msg)
+                            //window.location.href = "index.html";
                         }
                     });
                 } else {
