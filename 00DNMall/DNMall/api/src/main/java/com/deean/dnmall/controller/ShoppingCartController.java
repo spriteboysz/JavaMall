@@ -1,13 +1,13 @@
 package com.deean.dnmall.controller;
 
+import com.deean.dnmall.bean.ShoppingCart;
+import com.deean.dnmall.service.ShoppingCartService;
 import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author: Deean
@@ -22,10 +22,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "ShoppingCartManager", description = "购物车管理")
 public class ShoppingCartController {
 
+    @Resource
+    private ShoppingCartService shoppingCartService;
+
     @GetMapping("/list")
     @Operation(summary = "购物车列表")
     public ResultVO listCart(String token) {
         System.out.println("---购物车列表接口---");
         return new ResultVO(ResStatus.success, "success", null);
+    }
+
+    @PostMapping("/add")
+    @Operation(summary = "添加购物车")
+    public ResultVO addCart(@RequestBody ShoppingCart cart, @RequestHeader("token")String token) {
+        return shoppingCartService.addShoppingCart(cart);
     }
 }

@@ -2,6 +2,7 @@ package com.deean.dnmall.service;
 
 import com.deean.dnmall.bean.ShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.deean.dnmall.vo.ResultVO;
 
 /**
 * @author Deean
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-12-25 22:57:16
 */
 public interface ShoppingCartService extends IService<ShoppingCart> {
-
+    ResultVO addShoppingCart(ShoppingCart cart);
 }
