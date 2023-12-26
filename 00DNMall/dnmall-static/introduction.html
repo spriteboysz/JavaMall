@@ -15,6 +15,10 @@
     <link type="text/css" href="static/css/style.css" rel="stylesheet"/>
 
     <script type="text/javascript" src="static/js/jquery-1.7.min.js"></script>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.5/dist/css/layui.css">
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.6.5/dist/layui.js"></script>
     <script type="text/javascript" src="static/js/quick_links.js"></script>
 
     <script type="text/javascript" src="static/js/amazeui.js"></script>
@@ -291,13 +295,13 @@
                                                 <div class="cart-title number">数量</div>
                                                 <dd>
                                                     <input id="min" class="am-btn am-btn-default" name="" type="button"
-                                                           value="-"/>
-                                                    <input id="text_box" name="" type="text" value="1"
+                                                           value="-" @click="changeNum(-1)"/>
+                                                    <input id="text_box" name="" type="text" v-model="num"
                                                            style="width:30px;"/>
                                                     <input id="add" class="am-btn am-btn-default" name="" type="button"
-                                                           value="+"/>
+                                                           value="+" @click="changeNum(1)"/>
                                                     <span id="stock1" class="tb-hidden">库存<span
-                                                            class="stock">1000</span>件</span>
+                                                            class="stock">{{productSkus[currentSkuIndex].skuStock}}</span>件</span>
                                                 </dd>
                                             </div>
                                         </div>
@@ -359,7 +363,7 @@
                     </li>
                     <li>
                         <div class="clearfix tb-btn tb-btn-basket theme-login">
-                            <a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
+                            <a id="LikBasket" title="加入购物车" @click="addShopCart"><i></i>加入购物车</a>
                         </div>
                     </li>
                 </div>
@@ -377,7 +381,7 @@
                 <ul class="like_list">
                     <li>
                         <div class="s_picBox">
-                            <a class="s_pic" href="#"><img src="static/images/cp.jpg"></a>
+                            <a class="s_pic" href="#"><img src="static/images/cp.jpg" alt=""></a>
                         </div>
                         <a class="txt" target="_blank" href="#">萨拉米 1+1小鸡腿</a>
                         <div class="info-box"><span class="info-box-price">¥ 29.90</span> <span
@@ -1357,6 +1361,11 @@
 <script type="text/javascript" src="static/js/axios.min.js"></script>
 <script type="text/javascript" src="static/js/utils.js"></script>
 <script type="text/javascript">
+    let layer;
+    layui.use('layer', function(){
+        layer = layui.layer;
+    });
+
     baseUrl = "http://localhost:8080/";
     const app = Vue.createApp({
         data() {
@@ -1437,7 +1446,7 @@
             changeSku: function (event) {
                 //获取点击的套餐的索引
                 this.currentSkuIndex = event.srcElement.dataset.index;
-                const str = this.productSkus[this.currentSkuIndex].untitled;
+                const str = this.productSkus[this.currentSkuIndex].skuUntitled;
                 this.skuProps = eval("(" + str + ")");
                 //重新定义选中效果（调用定义在list.js中的initChoose函数）
                 //initChoose();
@@ -1478,7 +1487,7 @@
             changeNum: function (m) {
                 if (m === -1 && this.num > 1) {
                     this.num = this.num - 1;
-                } else if (m === 1 && this.num < this.productSkus[this.currentSkuIndex].stock) {
+                } else if (m === 1 && this.num < this.productSkus[this.currentSkuIndex].skuStock) {
                     this.num = parseInt(this.num) + 1;
                 }
             },
@@ -1495,7 +1504,7 @@
                 const cart = {
                     "cartNum": this.num,
                     "productId": this.productId,
-                    "productPrice": this.productSkus[this.currentSkuIndex].sellPrice,
+                    "productPrice": this.productSkus[this.currentSkuIndex].skuSellPrice,
                     "skuId": this.productSkus[this.currentSkuIndex].skuId,
                     "skuProps": propStr,
                     "userId": uid
