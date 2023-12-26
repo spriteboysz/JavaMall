@@ -702,7 +702,7 @@
                         this.username = getCookieValue("username");
                         this.userImage = getCookieValue("image");
                     }
-
+                    console.log("index = " + this.username)
                     //轮播图
                     const url1 = baseUrl + "index/index-image";
                     axios.get(url1).then((res) => {

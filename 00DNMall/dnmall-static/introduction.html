@@ -35,7 +35,10 @@
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
-                <div class="menu-hd">
+                <div v-if="isLogin" class="menu-hd">
+                    {{username}},欢迎您！
+                </div>
+                <div v-else class="menu-hd">
                     <a href="#" target="_top" class="h">亲，请登录</a>
                     <a href="#" target="_top">免费注册</a>
                 </div>
@@ -1357,6 +1360,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="static/js/cookie_utils.js"></script>
 <script type="text/javascript" src="static/js/vue.global.js"></script>
 <script type="text/javascript" src="static/js/axios.min.js"></script>
 <script type="text/javascript" src="static/js/utils.js"></script>
@@ -1401,12 +1405,12 @@
             console.log("productId = " + this.productId)
             this.currentSkuIndex = getUrlParam("sid") != null ? getUrlParam("sid") : 0;
             this.num = getUrlParam("num") != null ? getUrlParam("num") : 1;
-            // this.token = getCookieValue("token");
-            // console.log("token = " + this.token);
-            // if (this.token != null && this.token !== "") {
-            //     this.isLogin = true;
-            //     this.username = getCookieValue("username");
-            // }
+            this.token = getCookieValue("token");
+            console.log("token = " + this.token);
+            if (this.token != null && this.token !== "") {
+                this.isLogin = true;
+                this.username = getCookieValue("username");
+            }
 
             //1.根据商品id查询商品基本信息
             const url1 = baseUrl + "product/detail-info/" + this.productId;

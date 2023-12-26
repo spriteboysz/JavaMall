@@ -95,8 +95,22 @@
                 colorStyle: "color:red",
                 username: "",
                 password: "",
-                isRight: false
+                isRight: false,
+                returnUrl: null,
+                pid: 0,
+                sid: 0,
+                num: 1
             }
+        },
+        created() {
+            //1.当从商品详情页跳转到登录页面的时候，获取并显示提示信息（url）
+            this.tips = getUrlParam("tips");
+
+            //2.获取到returnUrl 、 pid 、sid
+            this.returnUrl = getUrlParam("returnUrl");
+            this.pid = getUrlParam("pid");
+            this.sid = getUrlParam("sid");
+            this.num = getUrlParam("num");
         },
         methods: {
             doSubmit() {
@@ -112,12 +126,27 @@
                         if (vo.code !== 10000) {
                             this.tips = "用户名或密码不正确";
                         } else {
+                            //如果登录成功，就把token存储到cookie
                             setCookieValue("token", vo.msg);
-                            setCookieValue("username", vo.data.userRealName);
-                            setCookieValue("userid", vo.data.userId);
-                            setCookieValue("image", vo.data.userImage)
-                            console.log(vo.msg)
-                            window.location.href = "index.html";
+                            //将用户昵称和用户头像的路径保存在cookie
+                            setCookieValue("userId", vo.data.userId);
+                            setCookieValue("username", vo.data.userName);
+                            setCookieValue("userImg", vo.data.userImage)
+                            if (this.returnUrl == null) {
+                                window.location.href = "index.html";
+                            } else {
+                                this.returnUrl = this.returnUrl + "?m=" + Math.random();
+                                if (this.pid != null) {
+                                    this.returnUrl = this.returnUrl + "&pid=" + this.pid
+                                }
+                                if (this.sid != null) {
+                                    this.returnUrl = this.returnUrl + "&sid=" + this.sid
+                                }
+                                if (this.num != null) {
+                                    this.returnUrl = this.returnUrl + "&num=" + this.num
+                                }
+                                window.location.href = this.returnUrl;
+                            }
                         }
                     });
                 } else {
