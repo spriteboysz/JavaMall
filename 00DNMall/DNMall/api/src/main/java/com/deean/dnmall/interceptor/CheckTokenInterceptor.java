@@ -42,13 +42,13 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
                 Jws<Claims> claimsJws = parser.parseClaimsJws(token);
                 return true;
             } catch (ExpiredJwtException e) {
-                ResultVO resultVO = new ResultVO(ResStatus.fail, "登录过期，请重新登录", null);
+                ResultVO resultVO = new ResultVO(ResStatus.LOGIN_FAIL_OVERDUE, "登录过期，请重新登录", null);
                 doResponse(response, resultVO);
             } catch (UnsupportedJwtException e) {
-                ResultVO resultVO = new ResultVO(ResStatus.fail, "Token不合法", null);
+                ResultVO resultVO = new ResultVO(ResStatus.LOGIN_FAIL_NOT, "Token不合法", null);
                 doResponse(response, resultVO);
             } catch (Exception e) {
-                ResultVO resultVO = new ResultVO(ResStatus.fail, "请先登录", null);
+                ResultVO resultVO = new ResultVO(ResStatus.LOGIN_FAIL_NOT, "请先登录", null);
                 doResponse(response, resultVO);
             }
         }
