@@ -388,8 +388,9 @@
                     </div>
                 </div>
                 <div class="am-form-group"><label for="user-intro" class="am-form-label">详细地址</label>
-                    <div class="am-form-content"><textarea rows="3" id="user-intro"
-                                                           placeholder="输入详细地址"></textarea> <small>100字以内写出你的详细地址...</small>
+                    <div class="am-form-content">
+                        <textarea rows="3" id="user-intro" placeholder="输入详细地址" cols=""></textarea>
+                        <small>100字以内写出你的详细地址...</small>
                     </div>
                 </div>
                 <div class="am-form-group theme-poptit">
@@ -409,16 +410,17 @@
 <script type="text/javascript" src="static/js/axios.min.js"></script>
 <script type="text/javascript" src="static/js/base.js"></script>
 <script type="text/javascript">
-    var vm = new Vue({
-        el: "#container",
-        data: {
-            cartIds: "",
-            addrs: [],
-            shopCarts: [],
-            addrIndex: 0,  //用户选择的地址的索引（默认值和当前用户地址的默认地址索引相同）
-            totalPrice: 0,
-            payType: 1,  //1 微信支付   2 支付宝
-            orderRemark: ""
+    const app = Vue.createApp({
+        data() {
+            return {
+                cartIds: "",
+                addrs: [],
+                shopCarts: [],
+                addrIndex: 0,  //用户选择的地址的索引（默认值和当前用户地址的默认地址索引相同）
+                totalPrice: 0,
+                payType: 1,  //1 微信支付   2 支付宝
+                orderRemark: ""
+            }
         },
         created: function () {
             this.cartIds = getUrlParam("cids");
@@ -439,9 +441,9 @@
                     token: token
                 }
             }).then((res) => {
-                if (res.data.code == 20001 || res.data.code == 20002) {
+                if (res.data.code === 20001 || res.data.code === 20002) {
                     //跳转登录
-                } else if (res.data.code == 10000) {
+                } else if (res.data.code === 10000) {
                     //请求成功  [{commonType:0},{commonType:1}]
                     this.addrs = res.data.data;
 
@@ -529,6 +531,7 @@
             }
         }
     });
+    app.mount("#container");
 </script>
 </body>
 </html>

@@ -146,12 +146,13 @@
 <script type="text/javascript" src="static/js/cookie_utils.js"></script>
 <script type="text/javascript" src="static/js/base.js"></script>
 <script type="text/javascript">
-    var vm = new Vue({
-        el: "#div1",
-        data: {
-            token: "",
-            username: "",
-            userImg: ""
+    const app = Vue.createApp({
+        data() {
+            return {
+                token: "",
+                username: "",
+                userImg: ""
+            }
         },
         created: function () {
             //从cookie中获取用户信息（token、用户id、用户名、头像）
@@ -178,12 +179,9 @@
                     }
                 });
             }
-
         }
     });
+    app.mount("#div1")
 </script>
-
-
 </body>
-
 </html>

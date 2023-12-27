@@ -157,10 +157,11 @@
 <script type="text/javascript" src="static/js/base.js"></script>
 <script type="text/javascript">
 
-    var vm = new Vue({
-        el: "#container",
-        data: {
-            orderInfo: {}
+    const app = Vue.createApp({
+        data() {
+            return {
+                orderInfo: {}
+            }
         },
         //vue声明周期 ：  创建对象---beforeCreate---初始化data---created---加载模版---beforeMount---渲染数据---mounted
         created: function () {
@@ -211,6 +212,7 @@
 
         }
     });
+    app.mount("#container")
 </script>
 </body>
 

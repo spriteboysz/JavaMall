@@ -350,7 +350,7 @@
 
                 <div id="broadcast" class="item">
                     <a href="#">
-                        <span class="chongzhi"><img src="static/images/chongzhi.png"/></span>
+                        <span class="chongzhi"><img src="static/images/chongzhi.png" alt=""/></span>
                     </a>
                     <div class="mp_tooltip">
                         我要充值
@@ -457,16 +457,17 @@
 <script type="text/javascript" src="static/js/utils.js"></script>
 <script type="text/javascript" src="static/js/base.js"></script>
 <script type="text/javascript">
-    var vm = new Vue({
-        el: "#container",
-        data: {
-            categoryId: "",
-            pageNum: 1,
-            limit: 4,
-            products: [],
-            count: 0,
-            brands: [],
-            keyword: ""
+    const app = Vue.createApp({
+        data() {
+            return {
+                categoryId: "",
+                pageNum: 1,
+                limit: 4,
+                products: [],
+                count: 0,
+                brands: [],
+                keyword: ""
+            }
         },
         created: function () {
             //1.获取从上个页面传递过来的参数
@@ -574,17 +575,14 @@
                         }
                     });
                 }
-
             },
             toIntroduction: function (pid) {
                 window.location.href = "introduction.html?pid=" + pid;
             }
         }
     });
-
+    app.mount("#container");
 
 </script>
-
 </body>
-
 </html>
