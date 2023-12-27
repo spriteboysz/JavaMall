@@ -165,7 +165,7 @@
         },
         //vue声明周期 ：  创建对象---beforeCreate---初始化data---created---加载模版---beforeMount---渲染数据---mounted
         created: function () {
-            var jsonstr = localStorage.getItem("orderInfo");
+            const jsonstr = localStorage.getItem("orderInfo");
             if (jsonstr != null) {
                 localStorage.removeItem("orderInfo");
             }
@@ -173,18 +173,18 @@
         },
         mounted: function () {
             //渲染二维码
-            var qrcode = new QRCode($("#payQrcodeDiv")[0], {
+            const qrcode = new QRCode($("#payQrcodeDiv")[0], {
                 width: 200,
                 height: 200
             });
             qrcode.makeCode(this.orderInfo.payUrl);
 
             //前端发送websocket连接请求
-            var webSocketUrl = webSocketBaseUrl + "webSocket/" + this.orderInfo.orderId;
-            var websocket = new WebSocket(webSocketUrl);
+            const webSocketUrl = webSocketBaseUrl + "webSocket/" + this.orderInfo.orderId;
+            const websocket = new WebSocket(webSocketUrl);
             //只要后端通过websocket向此连接发消息就会触发onmessage事件
             websocket.onmessage = function (event) {
-                var msg = event.data;
+                const msg = event.data;
                 if (msg === "1") {
                     $("#div1").html("<label style='font-size:20px; color:green'>订单支付完成！</label>");
                 }

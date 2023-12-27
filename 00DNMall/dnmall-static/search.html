@@ -471,13 +471,13 @@
         },
         created: function () {
             //1.获取从上个页面传递过来的参数
-            var cid = getUrlParam("cid");
-            var keyword = getUrlParam("keyword");
+            const cid = getUrlParam("cid");
+            const keyword = getUrlParam("keyword");
 
             if (cid != null) {
                 this.categoryId = cid;
                 //2.请求接口：查询此类别下的商品信息
-                var url1 = baseUrl + "product/listbycid/" + this.categoryId;
+                const url1 = baseUrl + "product/listbycid/" + this.categoryId;
                 axios({
                     url: url1,
                     method: "get",
@@ -494,7 +494,7 @@
                     }
                 });
                 //3.请求接口： 根据类别查询此类别下商品的品牌
-                var url2 = baseUrl + "product/listbrands/" + this.categoryId;
+                const url2 = baseUrl + "product/listbrands/" + this.categoryId;
                 axios({
                     url: url2,
                     method: "get"
@@ -506,7 +506,7 @@
             } else if (keyword != null) {
                 this.keyword = keyword;
                 //根据关键字查询商品信息
-                var url3 = baseUrl + "product/listbykeyword";
+                const url3 = baseUrl + "product/listbykeyword";
                 axios({
                     url: url3,
                     method: "get",
@@ -522,7 +522,7 @@
                     }
                 });
                 //根据关键字查询品牌列表
-                var url4 = baseUrl + "product/listbrands-keyword";
+                const url4 = baseUrl + "product/listbrands-keyword";
                 axios({
                     url: url4,
                     method: "get",
@@ -541,7 +541,7 @@
                 this.pageNum = page;
                 //按类别id进行分页查询
                 if (this.categoryId != null && this.categoryId !== "") {
-                    var url1 = baseUrl + "product/listbycid/" + this.categoryId;
+                    const url1 = baseUrl + "product/listbycid/" + this.categoryId;
                     axios({
                         url: url1,
                         method: "get",
@@ -559,7 +559,7 @@
                     });
                 } else if (this.keyword != null) {
                     //按关键字进行模糊查询
-                    var url3 = baseUrl + "product/listbykeyword";
+                    const url3 = baseUrl + "product/listbykeyword";
                     axios({
                         url: url3,
                         method: "get",

@@ -427,10 +427,10 @@
             console.log(this.cartIds);
 
             //1.根据当前用户id查询收货地址信息
-            var userId = getCookieValue("userId");
-            var token = getCookieValue("token");
+            const userId = getCookieValue("userId");
+            const token = getCookieValue("token");
 
-            var url1 = baseUrl + "useraddr/list";
+            const url1 = baseUrl + "useraddr/list";
             axios({
                 url: url1,
                 method: "get",
@@ -448,7 +448,7 @@
                     this.addrs = res.data.data;
 
                     //this.addrIndex的值 等于 当前用户的默认收货地址的索引
-                    for (var i = 0; i < this.addrs.length; i++) {
+                    for (let i = 0; i < this.addrs.length; i++) {
                         if (this.addrs[i].commonAddr === 1) {
                             this.addrIndex = i;
                         }
@@ -458,7 +458,7 @@
 
 
             //2.根据this.cartIds查询当前订单中的商品信息
-            var url2 = baseUrl + "shopcart/listbycids";
+            const url2 = baseUrl + "shopcart/listbycids";
             axios({
                 url: url2,
                 method: "get",
@@ -474,7 +474,7 @@
                 } else if (res.data.code === 10000) {
                     //请求成功
                     this.shopCarts = res.data.data;
-                    for (var i = 0; i < this.shopCarts.length; i++) {
+                    for (let i = 0; i < this.shopCarts.length; i++) {
                         this.totalPrice = this.totalPrice + this.shopCarts[i].cartNum * this.shopCarts[i].sellPrice;
                     }
                 }

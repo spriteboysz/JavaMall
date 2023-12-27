@@ -46,7 +46,7 @@
         },
         created: function () {
             //获取到订单信息
-            var jsonstr = localStorage.getItem("order");
+            const jsonstr = localStorage.getItem("order");
             if (jsonstr != null) {
                 localStorage.removeItem("order");
                 this.order = eval("(" + jsonstr + ")");

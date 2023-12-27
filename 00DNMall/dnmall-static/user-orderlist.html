@@ -137,7 +137,7 @@
             this.token = getCookieValue("token");
             this.userId = getCookieValue("userId");
             //1.加载页面，请求订单信息
-            var url1 = baseUrl + "order/list";
+            const url1 = baseUrl + "order/list";
             axios({
                 url: url1,
                 method: "get",
@@ -161,8 +161,8 @@
             pager: function (page) {
                 this.pageNum = page;
                 //1.加载页面，请求订单信息
-                var url1 = baseUrl + "order/list";
-                var obj = {
+                const url1 = baseUrl + "order/list";
+                const obj = {
                     userId: this.userId,
                     pageNum: this.pageNum,
                     limit: this.limit
@@ -179,7 +179,7 @@
                     params: obj
                 }).then((res) => {
                     console.log(res.data.data);
-                    if (res.data.code == 10000) {
+                    if (res.data.code === 10000) {
                         this.orders = res.data.data.list;
                         this.count = res.data.data.count;
                     }
@@ -189,7 +189,7 @@
                 this.pageNum = 1;
                 this.status = status;
                 console.log(this.status);
-                var url1 = baseUrl + "order/list";
+                const url1 = baseUrl + "order/list";
                 axios({
                     url: url1,
                     method: "get",
@@ -211,8 +211,8 @@
                 });
             },
             gotoComment: function (event) {
-                var index = event.srcElement.dataset.index;
-                var order = this.orders[index];
+                const index = event.srcElement.dataset.index;
+                const order = this.orders[index];
                 localStorage.setItem("order", JSON.stringify(order));
                 window.location.href = "user-commentadd.html";
             }
