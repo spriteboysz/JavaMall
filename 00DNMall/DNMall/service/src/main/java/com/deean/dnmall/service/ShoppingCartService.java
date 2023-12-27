@@ -11,4 +11,6 @@ import com.deean.dnmall.vo.ResultVO;
 */
 public interface ShoppingCartService extends IService<ShoppingCart> {
     ResultVO addShoppingCart(ShoppingCart cart);
+
+    ResultVO listShoppingCartsByUserId(int userId);
 }

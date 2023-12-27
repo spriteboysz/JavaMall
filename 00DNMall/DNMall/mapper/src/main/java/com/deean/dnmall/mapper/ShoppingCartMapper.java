@@ -2,6 +2,9 @@ package com.deean.dnmall.mapper;
 
 import com.deean.dnmall.bean.ShoppingCart;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.deean.dnmall.bean.ShoppingCartVO;
+
+import java.util.List;
 
 /**
 * @author Deean
@@ -10,7 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.deean.dnmall.bean.ShoppingCart
 */
 public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
-
+    List<ShoppingCartVO> selectCartByUserId(int userId);
 }
 
 

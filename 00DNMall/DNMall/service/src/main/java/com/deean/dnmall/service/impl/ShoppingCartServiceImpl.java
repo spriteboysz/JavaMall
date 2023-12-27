@@ -2,12 +2,17 @@ package com.deean.dnmall.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.deean.dnmall.bean.ShoppingCart;
+import com.deean.dnmall.bean.ShoppingCartVO;
 import com.deean.dnmall.mapper.ShoppingCartMapper;
 import com.deean.dnmall.service.ShoppingCartService;
 import com.deean.dnmall.vo.ResStatus;
 import com.deean.dnmall.vo.ResultVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Deean
@@ -29,6 +34,13 @@ public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, Sho
         } else {
             return new ResultVO(ResStatus.fail, "fail", null);
         }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public ResultVO listShoppingCartsByUserId(int userId) {
+        List<ShoppingCartVO> list = shoppingCartMapper.selectCartByUserId(userId);
+        return new ResultVO(ResStatus.success, "success", list);
     }
 }
 
