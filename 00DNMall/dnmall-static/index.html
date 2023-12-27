@@ -533,7 +533,7 @@
 
                     </div>
                     <div id="shopCart" class="item">
-                        <a href="#">
+                        <a href="shopcart.html">
                             <span class="message"></span>
                         </a>
                         <p>
@@ -696,7 +696,8 @@
                 created: function () {
                     //从cookie中获取token、username、userImage
                     const token = getCookieValue("token");
-                    console.log("index = " + token)
+                    console.log("token:")
+                    console.log(token)
                     if (!(token === null || token === "")) {
                         this.isLogin = true;
                         this.username = getCookieValue("username");
