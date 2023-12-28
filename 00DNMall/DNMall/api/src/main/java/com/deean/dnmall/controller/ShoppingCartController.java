@@ -29,6 +29,7 @@ public class ShoppingCartController {
     @PostMapping("/add")
     @Operation(summary = "添加购物车")
     public ResultVO addCart(@RequestBody ShoppingCart cart, @RequestHeader("token") String token) {
+        System.out.println(token);
         cart.setCartTime("2023-12-26 23:20:00");
         return shoppingCartService.addShoppingCart(cart);
     }
@@ -37,6 +38,7 @@ public class ShoppingCartController {
     @Operation(summary = "购物车列表")
     @Parameters({@Parameter(name = "userId", description = "用户ID")})
     public ResultVO listCart(Integer userId, @RequestHeader("token") String token) {
+        System.out.println(token);
         return shoppingCartService.listShoppingCartsByUserId(userId);
     }
 
@@ -44,6 +46,7 @@ public class ShoppingCartController {
     public ResultVO updateNum(@PathVariable("cid") Integer cartId,
                               @PathVariable("num") Integer cartNum,
                               @RequestHeader("token") String token) {
+        System.out.println(token);
         return shoppingCartService.updateCartNum(cartId, cartNum);
     }
 }
