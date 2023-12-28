@@ -40,6 +40,7 @@ public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, Sho
     @Transactional(propagation = Propagation.SUPPORTS)
     public ResultVO listShoppingCartsByUserId(int userId) {
         List<ShoppingCartVO> list = shoppingCartMapper.selectCartByUserId(userId);
+        System.out.println(list);
         return new ResultVO(ResStatus.success, "success", list);
     }
 }

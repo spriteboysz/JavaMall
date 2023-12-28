@@ -55,4 +55,9 @@ public class ShoppingCartVO implements Serializable {
     private String productName;
 
     private String productImage;
+
+    private double skuOriginalPrice;
+    private double skuSellPrice;
+    private String skuName;
+    private int skuStock;
 }
