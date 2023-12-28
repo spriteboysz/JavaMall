@@ -39,4 +39,11 @@ public class ShoppingCartController {
     public ResultVO listCart(Integer userId, @RequestHeader("token") String token) {
         return shoppingCartService.listShoppingCartsByUserId(userId);
     }
+
+    @PutMapping("/update/{cid}/{num}")
+    public ResultVO updateNum(@PathVariable("cid") Integer cartId,
+                              @PathVariable("num") Integer cartNum,
+                              @RequestHeader("token") String token) {
+        return shoppingCartService.updateCartNum(cartId, cartNum);
+    }
 }

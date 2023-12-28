@@ -13,4 +13,6 @@ public interface ShoppingCartService extends IService<ShoppingCart> {
     ResultVO addShoppingCart(ShoppingCart cart);
 
     ResultVO listShoppingCartsByUserId(int userId);
+
+    ResultVO updateCartNum(int cartId,int cartNum);
 }

@@ -3,6 +3,7 @@ package com.deean.dnmall.mapper;
 import com.deean.dnmall.bean.ShoppingCart;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.deean.dnmall.bean.ShoppingCartVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,9 @@ import java.util.List;
 */
 public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
     List<ShoppingCartVO> selectCartByUserId(int userId);
+
+    int updateCartNumByCartId(@Param("cartId") int cartId,
+                              @Param("cartNum") int cartNum);
 }
 
 

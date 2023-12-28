@@ -43,6 +43,16 @@ public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, Sho
         System.out.println(list);
         return new ResultVO(ResStatus.success, "success", list);
     }
+
+    @Override
+    public ResultVO updateCartNum(int cartId, int cartNum) {
+        int i = shoppingCartMapper.updateCartNumByCartId(cartId, cartNum);
+        if (i > 0) {
+            return new ResultVO(ResStatus.success, "update success", null);
+        } else {
+            return new ResultVO(ResStatus.fail, "update fail", null);
+        }
+    }
 }
 
 
