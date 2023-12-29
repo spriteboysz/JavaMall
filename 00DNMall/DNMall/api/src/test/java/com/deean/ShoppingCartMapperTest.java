@@ -31,4 +31,10 @@ public class ShoppingCartMapperTest {
             System.out.println(shoppingCartVO);
         }
     }
+
+    @Test
+    public void addShoppingCartTest() {
+        int i = shoppingCartMapper.updateCartNumByCartId(1, 1);
+        System.out.println(i);
+    }
 }
