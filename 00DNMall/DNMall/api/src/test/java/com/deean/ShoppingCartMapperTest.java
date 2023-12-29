@@ -34,7 +34,8 @@ public class ShoppingCartMapperTest {
 
     @Test
     public void addShoppingCartTest() {
-        int i = shoppingCartMapper.updateCartNumByCartId(1, 1);
+        int i = shoppingCartMapper.updateCartNumByCartId(5, 2);
+        assert(i > 0);
         System.out.println(i);
     }
 }
