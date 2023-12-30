@@ -315,3 +315,38 @@ INSERT INTO `product_comment` VALUES ('7', '3', '咪咪虾条', '10000007', '4',
 INSERT INTO `shopping_cart` VALUES (5, '3', '1', '6', '1', '2021-05-12 09:18:35', 1.00000000, '口味:原味;包装:盒装;');
 INSERT INTO `shopping_cart` VALUES (6, '1', '4', '6', '1', '2021-05-12 09:18:47', 8.00000000, '口味:草莓;');
 INSERT INTO `shopping_cart` VALUES (7, '3', '1', '1', '1', '2021-05-12 09:37:15', 1.00000000, '口味:原味;包装:盒装;');
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES ('0ac64e4b59744e0a9576c9d18ef064bf', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 15:08:42', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('0b2dbc2ad85e4520974c9e42ce8472a5', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 15:48:51', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('0bdf74d7cb584011a205cb6255dc3810', '6', '咪咪小虾条,', '韩梅梅', '13232323322', '湖南 长沙 岳麓区 淅沥淅沥', 1.00000000, 1, 1, '', '1', NULL, NULL, NULL, NULL, '2021-05-11 10:36:17', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('1384c48a7ac846919dd8ca67209ff3eb', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 40.00000000, 40, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 09:54:08', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('194591690fee43eda20b85f35d71a376', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 10.00000000, 10, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-08 17:04:31', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('1e6557bf82c04fd28032c1ca56a77a84', '6', '奥利奥小饼干666,', '韩梅梅', '13232323322', '湖南 长沙 岳麓区 淅沥淅沥', 16.00000000, 16, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-11 10:37:00', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('2133a588a8e0455ba063065cc5337610', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 14:38:50', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('2edae7d9f94e42dd87841e3fb625976b', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 10:14:55', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('35ec6155dd104a36bc621b31636b9184', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 15:51:34', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('3995d67937ba434aa2c0fc66bfd88cfe', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 15:50:44', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('456ab37f8ba04739b4cdf47afa4a2096', '1', '奥利奥小饼干,咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 26.00000000, 26, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-08 14:13:42', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('5a718a72fe0945dda48a8d23cbf5ce0a', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 15:06:49', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('71ac3b8e8d5e4b79a60cb5777b9a71b3', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 10:18:58', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('7fd895de83fa4de7a63f04c90b533bfa', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 15:10:02', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('93b67b8122284b2fabd28c2e5d1c9914', '1', '奥利奥小饼干,咪咪虾条,', '小丽', '13131313311', '湖北 宜昌 夷陵区 巴拉巴拉', 18.00000000, 18, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 10:13:56', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('952751f3426f4e47bf26a181a15548b2', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 15:49:27', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('966b276ac926447295e66b077c607f27', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 5.00000000, 5, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 12:03:05', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('a5e54d2af3e347ddaa2efc0e31160ffa', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 16:02:42', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('a8a619e81d5042aaad1975da52ce6ee5', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '4', NULL, NULL, NULL, NULL, '2021-05-07 15:52:41', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('b670af2c2779449cbe16ec5b021fdd25', '6', '奥利奥小饼干666,咪咪小虾条,', '韩梅梅', '13232323322', '湖南 长沙 岳麓区 淅沥淅沥', 9.00000000, 9, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-11 10:37:51', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('c2efcd6725174b7fa27829382fd89e6a', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 12:10:21', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('ca364a09c3b04cf881e0944ede34563b', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 12:00:39', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('d1dd179a0d194351b7bfa658f3d86579', '1', '奥利奥小饼干,咪咪虾条,', '小丽', '13131313311', '湖北 宜昌 夷陵区 巴拉巴拉', 13.00000000, 13, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 09:50:49', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('dd4b131a6bcc46b1a7c266423ee04a29', '1', '咪咪虾条,', '小丽', '13131313311', '湖北 宜昌 夷陵区 巴拉巴拉', 5.00000000, 5, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-08 17:07:29', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('e7f3a0d3fccf40a88d05f7b1ca7e1700', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 8.00000000, 8, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 14:42:32', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('e863aeb9da464367bf3b4c5f35d0a31a', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 5.00000000, 5, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 15:02:53', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('ea4e4918a7dc4ec3acfecaa7d5a2ae51', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 10.00000000, 10, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-08 09:12:04', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('f1d426615dc84e4abb37974ae25c1cd9', '1', '奥利奥小饼干,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 32.00000000, 32, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-08 14:10:37', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('f67b950e78ae45ee8bae922e8dab6ddc', '1', '奥利奥小饼干,咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 9.00000000, 9, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-07 09:53:12', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `orders` VALUES ('f9743ec166de4e8f9bce8a2510b6cf54', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '2', NULL, NULL, NULL, NULL, '2021-05-07 11:47:33', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` VALUES ('fb6e252e26c94935b3ce8a7b7bb82ddd', '1', '咪咪虾条,', '张三', '13030303300', '湖北 武汉 江夏区 光谷大道77号', 1.00000000, 1, 1, '', '6', NULL, NULL, NULL, NULL, '2021-05-08 09:51:34', NULL, NULL, NULL, NULL, NULL, 1);
