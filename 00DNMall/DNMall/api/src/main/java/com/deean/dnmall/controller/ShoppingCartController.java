@@ -10,6 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Author: Deean
  * Date: 2023-12-13 23:16
@@ -30,7 +33,10 @@ public class ShoppingCartController {
     @Operation(summary = "添加购物车")
     public ResultVO addCart(@RequestBody ShoppingCart cart, @RequestHeader("token") String token) {
         System.out.println(token);
-        cart.setCartTime("2023-12-26 23:20:00");
+
+        Date date = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        cart.setCartTime(dateFormat.format(date));
         return shoppingCartService.addShoppingCart(cart);
     }
 
