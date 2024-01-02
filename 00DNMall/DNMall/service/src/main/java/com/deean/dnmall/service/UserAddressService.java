@@ -2,6 +2,7 @@ package com.deean.dnmall.service;
 
 import com.deean.dnmall.bean.UserAddress;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.deean.dnmall.vo.ResultVO;
 
 /**
 * @author Deean
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-11-26 11:42:57
 */
 public interface UserAddressService extends IService<UserAddress> {
-
+    ResultVO listAddrsByUserId(int userId);
 }
