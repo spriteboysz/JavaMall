@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,17 @@ public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, Sho
         } else {
             return new ResultVO(ResStatus.fail, "update fail", null);
         }
+    }
+
+    @Override
+    public ResultVO listShoppingCartsByCartIds(String cart_ids) {
+        String[] arr = cart_ids.split(",");
+        List<Integer> cartIds = new ArrayList<>();
+        for (String s : arr) {
+            cartIds.add(Integer.parseInt(s));
+        }
+        List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.selectShoppingcartByCartIds(cartIds);
+        return new ResultVO(ResStatus.success, "success", shoppingCartVOS);
     }
 }
 

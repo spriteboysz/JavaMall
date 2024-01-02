@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +36,16 @@ public class ShoppingCartMapperTest {
     @Test
     public void addShoppingCartTest() {
         int i = shoppingCartMapper.updateCartNumByCartId(5, 2);
-        assert(i > 0);
+        assert (i > 0);
         System.out.println(i);
+    }
+
+    @Test
+    public void listShoppingCardTest02() {
+        List<Integer> cart_ids = new ArrayList<>();
+        cart_ids.add(5);
+        cart_ids.add(6);
+        List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.selectShoppingcartByCartIds(cart_ids);
+        System.out.println(shoppingCartVOS);
     }
 }

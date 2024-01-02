@@ -35,7 +35,7 @@ public class ShoppingCartController {
         System.out.println(token);
 
         Date date = new Date();
-        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         cart.setCartTime(dateFormat.format(date));
         return shoppingCartService.addShoppingCart(cart);
     }
@@ -54,5 +54,12 @@ public class ShoppingCartController {
                               @RequestHeader("token") String token) {
         System.out.println(token);
         return shoppingCartService.updateCartNum(cartId, cartNum);
+    }
+
+    @GetMapping("/cardiologists")
+    @Operation(summary = "通过购物车ID查询购物车列表")
+    public ResultVO listByCardIds(String card_ids, @RequestHeader("token") String token) {
+        System.out.println(token);
+        return shoppingCartService.listShoppingCartsByCartIds(card_ids);
     }
 }

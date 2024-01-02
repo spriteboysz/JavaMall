@@ -18,6 +18,8 @@ public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
 
     int updateCartNumByCartId(@Param("cartId") int cartId,
                               @Param("cartNum") int cartNum);
+
+    List<ShoppingCartVO> selectShoppingcartByCartIds(List<Integer> cart_ids);
 }
 
 
